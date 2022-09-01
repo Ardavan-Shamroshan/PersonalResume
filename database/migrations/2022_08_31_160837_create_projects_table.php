@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('author_id')->constrained('authors')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('table');
             $table->string('description')->nullable();
             $table->text('image')->nullable();

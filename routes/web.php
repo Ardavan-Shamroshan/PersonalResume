@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Livewire\Admin\AdminDashboard;
+use App\Http\Livewire\Admin\User\AddUser;
+use App\Http\Livewire\Admin\User\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +28,9 @@ require __DIR__ . '/auth.php';
 
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', AdminDashboard::class);
+    Route::get('/', AdminDashboard::class)->name('admin.dashboard');
+    Route::prefix('user')->group(function () {
+        Route::get('/', User::class)->name('admin.user');
+        Route::get('/add-user', AddUser::class)->name('admin.user.add-user');
+    });
 });

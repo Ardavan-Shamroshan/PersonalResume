@@ -2,9 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +12,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('skills', function (Blueprint $table) {
-            $table->id();
+        // Create table for storing roles
+        Schema::create('posts', function (Blueprint $table) {
+            $table->increments('id');
             $table->foreignId('author_id')->constrained('authors')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
-            $table->integer('level');
+            $table->string('summary')->nullable();
+            $table->text('body');
+            $table->string('image')->nullable();
+            $table->string('slug')->unique();
+            $table->integer('likes')->nullable();
             $table->tinyInteger('status')->default(0);
+            $table->boolean('featured')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('skills');
+        Schema::drop('posts');
     }
-};
+}
