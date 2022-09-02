@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Admin\User\User;
-use App\Http\Livewire\Admin\User\AddUser;
-use App\Http\Livewire\Admin\User\EditUser;
-use App\Http\Livewire\Admin\AdminDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +19,19 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
 
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', AdminDashboard::class)->name('admin.dashboard');
+    Route::get('/', App\Http\Livewire\Admin\AdminDashboard::class)->name('admin.dashboard');
     Route::prefix('user')->group(function () {
-        Route::get('/', User::class)->name('admin.user');
-        Route::get('/add-user', AddUser::class)->name('admin.user.add-user');
-        Route::get('/edit-user/{user}', EditUser::class)->name('admin.user.edit-user');
+        Route::get('/', App\Http\Livewire\Admin\User\User::class)->name('admin.user');
+        Route::get('/add-user', App\Http\Livewire\Admin\User\AddUser::class)->name('admin.user.add-user');
+        Route::get('/edit-user/{user}', App\Http\Livewire\Admin\User\EditUser::class)->name('admin.user.edit-user');
+    });
+    Route::prefix('author')->group(function () {
+        Route::get('/', App\Http\Livewire\Admin\Author\Author::class)->name('admin.author');
     });
 });

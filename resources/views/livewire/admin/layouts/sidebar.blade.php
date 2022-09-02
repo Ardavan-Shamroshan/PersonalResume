@@ -56,7 +56,7 @@
       <li class="nav-item nav-category">
         <span class="nav-link">Navigation</span>
       </li>
-      <li class="nav-item menu-items">
+      <li class="nav-item menu-items {{ active('admin.dashboard') }}">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
@@ -71,13 +71,6 @@
           </span>
           <span class="menu-title">authors</span>
         </a>
-        <div class="collapse" id="ui-basic">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-          </ul>
-        </div>
       </li>
       <li class="nav-item menu-items">
         <a class="nav-link" href="pages/forms/basic_elements.html">
@@ -120,7 +113,7 @@
         </a>
       </li>
 
-      <li class="nav-item menu-items">
+      <li class="nav-item menu-items {{ active('admin.user') }}">
         <a class="nav-link" href="{{ route('admin.user') }}">
           <span class="menu-icon">
             <i class="mdi mdi-security"></i>

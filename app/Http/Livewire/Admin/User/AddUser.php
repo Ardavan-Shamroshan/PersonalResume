@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Admin\User;
 
 use Livewire\Component;
+use Illuminate\Support\Str;
 use App\Models\User as ModelsUser;
+use Illuminate\Support\Facades\Hash;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class AddUser extends Component
@@ -36,7 +38,8 @@ class AddUser extends Component
     public function submit()
     {
         $validatedData = $this->validate()['user'];
-        $validatedData['email_verified_at'] = now();
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['remember_token'] = Str::random(60);
         ModelsUser::query()->create($validatedData);
         $this->alert('success', 'user created successfully');
         return redirect()->route('admin.user');
@@ -46,7 +49,8 @@ class AddUser extends Component
     public function SaveAndEdit()
     {
         $validatedData = $this->validate()['user'];
-        $validatedData['email_verified_at'] = now();
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['remember_token'] = Str::random(60);
         $user = ModelsUser::query()->create($validatedData);
         $this->alert('success', 'user created successfully');
         return redirect()->route('admin.user.edit-user', $user);
@@ -56,7 +60,8 @@ class AddUser extends Component
     public function SaveAndNew()
     {
         $validatedData = $this->validate()['user'];
-        $validatedData['email_verified_at'] = now();
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['remember_token'] = Str::random(60);
         ModelsUser::query()->create($validatedData);
         $this->alert('success', 'user created successfully');
         $this->reset();
