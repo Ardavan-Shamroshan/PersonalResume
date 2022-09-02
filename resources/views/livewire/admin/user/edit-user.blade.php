@@ -1,4 +1,3 @@
-
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="page-header">
@@ -7,13 +6,13 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('admin.dashboard') }}">Admin</a></li>
                     <li class="breadcrumb-item"><a href="{{route('admin.user') }}">Users</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Add</li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
                 </ol>
             </nav>
         </div>
 
         <div class="mb-2">
-            <small class="text-muted">Add User.</small>
+            <small class="text-muted">Edit User.</small>
             <a href="{{ route('admin.user') }}" class="btn btn-sm">
                 <small class="card-description"> <i class="mdi mdi-arrow-left-circle-outline"></i> Back to all Users
                 </small>
@@ -25,28 +24,17 @@
             <div class="col-md-7 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <form class="forms-sample" wire:submit.prevent="submit">
+                        <form class="forms-sample" wire:submit.prevent="edit">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="name" name="user.name"
-                                    wire:model.lazy="user.name">
+                                <input type="text" class="form-control" id="name" placeholder="name" name="name" wire:model.lazy="user.name">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address</label>
                                 <input type="email" class="form-control" id="email" placeholder="Email" name="email"
                                     wire:model.lazy="user.email">
                             </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password_confirmation"
-                                    placeholder="Password" name="user.password_confirmation"
-                                    wire:model.lazy="user.password_confirmation">
-                            </div>
-                            <div class="form-group">
-                                <label for="password_confirmation">Confirm Password</label>
-                                <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Password Confirmation" wire:model.lazy="user.password">
-                            </div>
+
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-success @if ($errors->any()) disabled @endif"><i
                                         class="mdi mdi-content-save"></i>Save and back</button>
@@ -61,8 +49,7 @@
                                        href="#" wire:click="SaveAndNew">Save and new item</a>
                                 </div>
                             </div>
-                            <a type="button" class="btn btn-secondary me-2" wire:click="resetFilters"><i
-                                    class="mdi mdi-cancel"></i>Cancel</a>
+                            <a type="button" class="btn btn-secondary me-2" wire:click="resetFilters"><i class="mdi mdi-cancel"></i>Cancel</a>
                         </form>
                     </div>
                 </div>
@@ -87,14 +74,6 @@
                                     <input type="email"
                                         class="form-control border bg-dark @error('user.email') border-danger text-danger @else  border-success text-success @enderror"
                                         value="@error('user.email') {{ $message }} @else {{ $user->email ?? '' }} @enderror"
-                                        readonly>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <input type="text"
-                                        class="form-control border bg-dark @error('user.password') border-danger text-danger @else border-success text-success @enderror"
-                                        value="@error('user.password') {{ $message }} @else {{ $user->password ?? '' }} @enderror"
                                         readonly>
                                 </div>
                             </div>

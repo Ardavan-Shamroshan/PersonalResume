@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Livewire\Admin\AdminDashboard;
-use App\Http\Livewire\Admin\User\AddUser;
-use App\Http\Livewire\Admin\User\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\User\User;
+use App\Http\Livewire\Admin\User\AddUser;
+use App\Http\Livewire\Admin\User\EditUser;
+use App\Http\Livewire\Admin\AdminDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,6 @@ Route::prefix('admin')->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/', User::class)->name('admin.user');
         Route::get('/add-user', AddUser::class)->name('admin.user.add-user');
+        Route::get('/edit-user/{user}', EditUser::class)->name('admin.user.edit-user');
     });
 });

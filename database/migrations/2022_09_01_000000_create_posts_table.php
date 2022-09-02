@@ -23,8 +23,8 @@ class CreatePostsTable extends Migration
             $table->string('slug')->unique();
             $table->integer('likes')->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->boolean('featured')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

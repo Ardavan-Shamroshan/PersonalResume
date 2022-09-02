@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('logo');
             $table->string('copy_right');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

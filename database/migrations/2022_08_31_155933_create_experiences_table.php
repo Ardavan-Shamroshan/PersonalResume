@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

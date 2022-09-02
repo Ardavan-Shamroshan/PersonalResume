@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('link')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

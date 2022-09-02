@@ -28940,3 +28940,14 @@ div.tagsinput span.tag a {
 
 
 /*# sourceMappingURL=maps/style.css.map */
+
+.disabled-link {
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+    color: grey;
+}
+
+.swal2-modal .swal2-title {
+    color: #545454 !important;
+}

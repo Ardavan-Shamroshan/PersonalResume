@@ -4,7 +4,7 @@
             <h1> Users </h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('admin.user') }}">Admin</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard') }}">Admin</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Users</li>
                 </ol>
             </nav>
@@ -15,8 +15,8 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <div><small class="text-muted py-3">Showing 1 to 10 of 132 entries. <a href="" class="btn btn-sm">Reset</a></small></div>
-                        <button type="button" class="card-title btn btn-info btn-icon-text my-2 py-2" > Add User <i class="mdi mdi-plus"></i></button>
+                        <div><small class="text-muted py-3">Showing {{ $users->count() }} entries.</div>
+                        <a href="{{ route('admin.user.add-user') }}" class="card-title btn btn-info btn-icon-text my-2 py-2" > Add User <i class="mdi mdi-plus"></i></a>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -45,8 +45,8 @@
                                     <td><a href="mailto:{{ $user->email }}" class="btn btn-sm">{{  $user->email }} </a></td>
                                     <td> {{  $user->email_verified_at }} </td>
                                     <td>
-                                        <a type="button" class="btn btn-sm btn-icon-text my-auto"> <small>edit <i class="mdi mdi-pen"></i></small></a>
-                                        <a type="button" class="btn btn-sm btn-icon-text my-auto"> <small>delete <i class="mdi mdi-trash-can"></i></small></a>
+                                        <a href="{{ route('admin.user.edit-user', $user) }}" class="btn btn-sm btn-icon-text my-auto"> <small>edit <i class="mdi mdi-pen"></i></small></a>
+                                        <a class="btn btn-sm btn-icon-text my-auto" wire:click.prevent="destroy({{ $user }})"> <small>delete <i class="mdi mdi-trash-can"></i></small></a>
                                     </td>
                                 </tr>
                                   @endforeach

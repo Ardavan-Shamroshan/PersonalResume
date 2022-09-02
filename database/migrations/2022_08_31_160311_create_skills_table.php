@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('level');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

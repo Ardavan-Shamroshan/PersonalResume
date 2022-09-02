@@ -22,6 +22,7 @@ class User extends Model
         'name',
         'email',
         'password',
+        'email_verified_at',
     ];
 
     /**
@@ -30,7 +31,7 @@ class User extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        // 'password',
         'remember_token',
     ];
 

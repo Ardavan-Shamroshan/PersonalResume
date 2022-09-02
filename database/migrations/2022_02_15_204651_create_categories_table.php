@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('categoriable_type');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

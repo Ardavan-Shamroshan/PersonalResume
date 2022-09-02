@@ -26,6 +26,7 @@ return new class extends Migration
             $table->text('about_me')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
