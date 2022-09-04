@@ -29,7 +29,7 @@ class AddAuthor extends Component
     {
         $i = $i + 1;
         $this->i = $i;
-        array_push($this->inputs ,$i);
+        array_push($this->inputs, $i);
     }
 
     public function remove($i)
@@ -76,12 +76,12 @@ class AddAuthor extends Component
         $skillsTitle = $validatedSkillData['title']; // skill titles data
         $skillsLevel = $validatedSkillData['level']; // skill level data
         $skillsStatus = $validatedSkillData['status']; // skill status data
-    
+
         // creaate author
         $author = ModelsAuthor::query()->create($validatedAuthorData);
 
         // create skill
-        foreach($skillsTitle as $key => $value) {
+        foreach ($skillsTitle as $key => $value) {
             $skill = ModelsSkill::create([
                 'author_id' => $author->id,
                 'title' => $value,
@@ -89,51 +89,69 @@ class AddAuthor extends Component
                 'status' => $skillsStatus[$key],
             ]);
         }
-    
+
         $this->alert('success', 'author created successfully');
         return redirect()->route('admin.author');
     }
 
     // Save and directly edit the record
-    // public function SaveAndEdit()
-    // {
-    //     $validatedData = $this->validate()['user'];
-    //     $validatedData['password'] = Hash::make($validatedData['password']);
-    //     $validatedData['remember_token'] = Str::random(60);
-    //     $user = ModelsUser::query()->create($validatedData);
-    //     $this->alert('success', 'user created successfully');
-    //     return redirect()->route('admin.user.edit-user', $user);
-    // }
+    public function SaveAndEdit()
+    {
+        // validated author data
+        $validatedAuthorData = $this->validate()['author'];
+        // validated skill data
+        $validatedSkillData = $this->validate()['skill'];
+
+        // extract values (title, level, status) from validated skill data
+        $skillsTitle = $validatedSkillData['title']; // skill titles data
+        $skillsLevel = $validatedSkillData['level']; // skill level data
+        $skillsStatus = $validatedSkillData['status']; // skill status data
+
+        // creaate author
+        $author = ModelsAuthor::query()->create($validatedAuthorData);
+
+        // create skill
+        foreach ($skillsTitle as $key => $value) {
+            $skill = ModelsSkill::create([
+                'author_id' => $author->id,
+                'title' => $value,
+                'level' => $skillsLevel[$key],
+                'status' => $skillsStatus[$key],
+            ]);
+        }
+
+        $this->alert('success', 'author created successfully');
+        return redirect()->route('admin.author.edit-author', $author);
+    }
 
     // Save and directly register new record
     public function SaveAndNew()
     {
-       // validated author data
-       $validatedAuthorData = $this->validate()['author'];
-       // validated skill data
-       $validatedSkillData = $this->validate()['skill'];
+        // validated author data
+        $validatedAuthorData = $this->validate()['author'];
+        // validated skill data
+        $validatedSkillData = $this->validate()['skill'];
 
-       // extract values (title, level, status) from validated skill data
-       $skillsTitle = $validatedSkillData['title']; // skill titles data
-       $skillsLevel = $validatedSkillData['level']; // skill level data
-       $skillsStatus = $validatedSkillData['status']; // skill status data
-   
-       // creaate author
-       $author = ModelsAuthor::query()->create($validatedAuthorData);
+        // extract values (title, level, status) from validated skill data
+        $skillsTitle = $validatedSkillData['title']; // skill titles data
+        $skillsLevel = $validatedSkillData['level']; // skill level data
+        $skillsStatus = $validatedSkillData['status']; // skill status data
 
-       // create skill
-       foreach($skillsTitle as $key => $value) {
-           $skill = ModelsSkill::create([
-               'author_id' => $author->id,
-               'title' => $value,
-               'level' => $skillsLevel[$key],
-               'status' => $skillsStatus[$key],
-           ]);
-       }
-   
-       $this->alert('success', 'author created successfully');
-       $this->inputs = [];
-       $this->reset();
+        // creaate author
+        $author = ModelsAuthor::query()->create($validatedAuthorData);
+
+        // create skill
+        foreach ($skillsTitle as $key => $value) {
+            $skill = ModelsSkill::create([
+                'author_id' => $author->id,
+                'title' => $value,
+                'level' => $skillsLevel[$key],
+                'status' => $skillsStatus[$key],
+            ]);
+        }
+
+        $this->alert('success', 'author created successfully');
+        return redirect()->route('admin.author.add-author');
     }
 
     // reset all filters

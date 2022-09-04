@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin\Author;
 
 use Livewire\Component;
 use App\Models\Author as ModelsAuthor;
-use App\Models\Author as ModelsSkill;
+use App\Models\Skill as ModelsSkill;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class EditAuthor extends Component
@@ -15,7 +15,13 @@ class EditAuthor extends Component
     public ModelsAuthor $author;
     public $skill;
 
-    public function mount () {
+    // listens to this method after confirmation the SweetAlert2  confirm alert
+    protected $listeners = [
+        'confirmed'
+    ];
+
+    public function mount()
+    {
         $this->skill = new ModelsSkill;
     }
 
@@ -26,7 +32,7 @@ class EditAuthor extends Component
     {
         $i = $i + 1;
         $this->i = $i;
-        array_push($this->inputs ,$i);
+        array_push($this->inputs, $i);
     }
 
     public function remove($i)
@@ -46,13 +52,13 @@ class EditAuthor extends Component
         'author.birth_date' => ['required', 'digits:4'],
         'author.status' => ['required'],
 
-        'skill.title.0' => ['required'],
-        'skill.level.0' => ['required'],
-        'skill.status.0' => ['required'],
+        'skill.title.0' => ['nullable'],
+        'skill.level.0' => ['nullable'],
+        'skill.status.0' => ['nullable'],
         // multi skill inputs validation
-        'skill.title.*' => 'required',
-        'skill.level.*' => 'required',
-        'skill.status.*' => 'required',
+        'skill.title.*' => 'nullable',
+        'skill.level.*' => 'nullable',
+        'skill.status.*' => 'nullable',
     ];
 
 
@@ -62,90 +68,133 @@ class EditAuthor extends Component
     }
 
     // Save the record
-    // public function edit()
-    // {
-    //     dd('edit')
-    //     // validated author data
-    //     $validatedAuthorData = $this->validate()['author'];
-    //     // validated skill data
-    //     $validatedSkillData = $this->validate()['skill'];
+    public function edit()
+    {
+        // validated author data
+        $validatedAuthorData = $this->validate()['author'];
 
-    //     // extract values (title, level, status) from validated skill data
-    //     $skillsTitle = $validatedSkillData['title']; // skill titles data
-    //     $skillsLevel = $validatedSkillData['level']; // skill level data
-    //     $skillsStatus = $validatedSkillData['status']; // skill status data
-    
-    //     // creaate author
-    //     $author = ModelsAuthor::query()->create($validatedAuthorData);
+        // check if there is any new skill
+        if (array_key_exists('skill', $this->validate())) {
+            // validated skill data
+            $validatedSkillData = $this->validate()['skill'];
 
-    //     // create skill
-    //     foreach($skillsTitle as $key => $value) {
-    //         $skill = ModelsSkill::create([
-    //             'author_id' => $author->id,
-    //             'title' => $value,
-    //             'level' => $skillsLevel[$key],
-    //             'status' => $skillsStatus[$key],
-    //         ]);
-    //     }
-    
-    //     $this->alert('success', 'author created successfully');
-    //     return redirect()->route('admin.author');
-    // }
+            // extract values (title, level, status) from validated skill data
+            $skillsTitle = $validatedSkillData['title']; // skill titles data
+            $skillsLevel = $validatedSkillData['level']; // skill level data
+            $skillsStatus = $validatedSkillData['status']; // skill status data
+            // create skill
+            foreach ($skillsTitle as $key => $value) {
+                $skill = ModelsSkill::create([
+                    'author_id' => $this->author->id,
+                    'title' => $value,
+                    'level' => $skillsLevel[$key],
+                    'status' => $skillsStatus[$key],
+                ]);
+            }
+        }
+
+
+        // creaate author
+        $this->author->update($validatedAuthorData);
+
+        $this->alert('success', 'author edited successfully');
+        return redirect()->route('admin.author');
+    }
 
     // Save and directly edit the record
-    // public function SaveAndEdit()
-    // {
-    //     $validatedData = $this->validate()['user'];
-    //     $validatedData['password'] = Hash::make($validatedData['password']);
-    //     $validatedData['remember_token'] = Str::random(60);
-    //     $user = ModelsUser::query()->create($validatedData);
-    //     $this->alert('success', 'user created successfully');
-    //     return redirect()->route('admin.user.edit-user', $user);
-    // }
+    public function SaveAndEdit()
+    { // validated author data
+        $validatedAuthorData = $this->validate()['author'];
+
+         // check if there is any new skill
+         if (array_key_exists('skill', $this->validate())) {
+            // validated skill data
+            $validatedSkillData = $this->validate()['skill'];
+
+            // extract values (title, level, status) from validated skill data
+            $skillsTitle = $validatedSkillData['title']; // skill titles data
+            $skillsLevel = $validatedSkillData['level']; // skill level data
+            $skillsStatus = $validatedSkillData['status']; // skill status data
+            // create skill
+            foreach ($skillsTitle as $key => $value) {
+                $skill = ModelsSkill::create([
+                    'author_id' => $this->author->id,
+                    'title' => $value,
+                    'level' => $skillsLevel[$key],
+                    'status' => $skillsStatus[$key],
+                ]);
+            }
+        }
+
+        // creaate author
+        $this->author->update($validatedAuthorData);
+
+        $this->alert('success', 'author edited successfully');
+        return redirect()->route('admin.author.edit-author', $this->author);
+    }
 
     // Save and directly register new record
     public function SaveAndNew()
     {
-       // validated author data
-       $validatedAuthorData = $this->validate()['author'];
-       // validated skill data
-       $validatedSkillData = $this->validate()['skill'];
+        // validated author data
+        $validatedAuthorData = $this->validate()['author'];
+         // check if there is any new skill
+         if (array_key_exists('skill', $this->validate())) {
+            // validated skill data
+            $validatedSkillData = $this->validate()['skill'];
 
-       // extract values (title, level, status) from validated skill data
-       $skillsTitle = $validatedSkillData['title']; // skill titles data
-       $skillsLevel = $validatedSkillData['level']; // skill level data
-       $skillsStatus = $validatedSkillData['status']; // skill status data
-   
-       // creaate author
-       $author = ModelsAuthor::query()->create($validatedAuthorData);
+            // extract values (title, level, status) from validated skill data
+            $skillsTitle = $validatedSkillData['title']; // skill titles data
+            $skillsLevel = $validatedSkillData['level']; // skill level data
+            $skillsStatus = $validatedSkillData['status']; // skill status data
+            // create skill
+            foreach ($skillsTitle as $key => $value) {
+                $skill = ModelsSkill::create([
+                    'author_id' => $this->author->id,
+                    'title' => $value,
+                    'level' => $skillsLevel[$key],
+                    'status' => $skillsStatus[$key],
+                ]);
+            }
+        }
+        // creaate author
+        $this->author->update($validatedAuthorData);
 
-       // create skill
-       foreach($skillsTitle as $key => $value) {
-           $skill = ModelsSkill::create([
-               'author_id' => $author->id,
-               'title' => $value,
-               'level' => $skillsLevel[$key],
-               'status' => $skillsStatus[$key],
-           ]);
-       }
-   
-       $this->alert('success', 'author created successfully');
-       $this->inputs = [];
-       $this->reset();
+        $this->alert('success', 'author created successfully');
+        return redirect()->route('admin.author.add-author');
+    }
+
+
+    // fires the SweetAlert2 confirm alert
+    public function destroy(ModelsSkill $skill)
+    {
+        $this->skill = $skill;
+        $this->confirm('Are you sure do want to delete?', [
+            'onConfirmed' => 'confirmed',
+            'cancelButtonText' => 'Forget it',
+            'confirmButtonText' => 'I\'m sure'
+        ]);
+    }
+
+
+    // deletes the user saved in $this->user if destroy method has been confirmed
+    public function confirmed()
+    {
+        $this->skill->delete();
+        $this->alert('success', 'Skill deleted successfully');
     }
 
     // reset all filters
     public function resetFilters()
     {
-        $this->reset();
-        return redirect()->route('admin.user');
+        return redirect()->route('admin.author');
     }
 
 
     public function render()
     {
-        $skills = $this->author->skills;
+        $skills = ModelsSkill::query()->where('author_id', $this->author->id)->get();
         return view('livewire.admin.author.edit-author', ['skills' => $skills])
-        ->layout('livewire.admin.layouts.master');
+            ->layout('livewire.admin.layouts.master');
     }
 }

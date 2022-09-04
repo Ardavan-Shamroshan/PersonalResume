@@ -24,7 +24,7 @@
             <div class="col-md-7 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <form class="forms-sample" wire:submit.prevent="submit">
+                        <form class="forms-sample" wire:submit.prevent="edit">
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label for="first_name">First name</label>
@@ -76,20 +76,21 @@
 
                             <div class="row">
                                 <label for="skill">Skills</label>
-                                <div class="form-group col-6">
-                                    <input type="text" class="form-control" id="skill_title" placeholder="Title" name="skill_title" wire:model.lazy="skill.title.0">
-                                </div>
-                                <div class="form-check form-check-success col-3">
-                                    <label class="form-check-label" for="skill_status">
-                                        <input type="checkbox" class="form-check-input" name="skill_status" id="skill_status" wire:model.lazy="skill.status.0"> Activate <i class="input-helper"></i></label>
-                                </div>
-                                <div class="form-group col-3">
-                                    <a wire:click.prevent="add({{ $i }})" class="card-title btn btn-sm btn-info btn-icon-text"><small> Add Skill <i class="mdi mdi-plus"></i></small></a>
-                                </div>
 
-                                <div class="form-group col-12">
-                                    <input type="range" name="rangeInput" min="0" max="100" id="skill_level" placeholder="Level" name="skill_level" wire:model.lazy="skill.level.0" onchange="updateTextInput(this.value);">
-                                </div>
+                                    <div class="form-group col-6">
+                                        <input type="text" class="form-control" id="skill_title" placeholder="Title" wire:model.lazy="skill.title.0">
+                                    </div>
+                                    <div class="form-check form-check-success col-3">
+                                        <label class="form-check-label" for="skill_status">
+                                            <input type="checkbox" class="form-check-input" name="skill_status" id="skill_status" wire:model.lazy="skill.status.0"> Activate <i class="input-helper"></i></label>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <a wire:click.prevent="add({{ $i }})" class="card-title btn btn-sm btn-info btn-icon-text"><small> Add Skill <i class="mdi mdi-plus"></i></small></a>
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <input type="range" name="rangeInput" min="0" max="100" id="skill_level" placeholder="Level" name="skill_level" wire:model.lazy="skill.level.0" onchange="updateTextInput(this.value);">
+                                    </div>
                             </div>
 
                             @foreach ($inputs as $key => $value)
@@ -185,31 +186,27 @@
                             <hr>
                             <h4>Skills</h4>
 
-                            @foreach ($skills as $skill)
                             <div class="form-group row">
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control border bg-dark @error('skill.title.0') border-danger text-danger @else border-success text-success @enderror" value="@error('skill.title.0') {{ $message }} @else {{ $skill->title }} @enderror"
+                                    <input type="text" class="form-control border bg-dark @error('skill.title.0') border-danger text-danger @else border-success text-success @enderror" value="@error('skill.title.0') {{ $message }} @else {{ $skill->title[0] ?? '' }} @enderror"
                                         readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control border bg-dark" value={{ $skill->level }} readonly>
+                                    <input type="text" class="form-control border bg-dark" value={{ $skill->level[0] ?? '' }}>
                                 </div>
                                 <div class="col-4 mt-2">
-                                    @if ($skill->status == 1)
+                                    @if ($skill->status[0] ?? 0 == 1)
                                         <p class="text-success"><i class="mdi mdi-check"></i> is active</p>
                                     @else
                                         <p class="text-warning"><i class="mdi mdi-close"></i> is deactive</p>
                                     @endif
                                 </div>
                             </div>
-                            @endforeach
 
-                            
                             @foreach ($inputs as $key => $value)
                             <div class="form-group row">
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control border bg-dark @error('skill.title.0') border-danger text-danger @else border-success text-success @enderror" value="@error('skill.title.0') {{ $message }} @else {{ $skill->title[$value] ?? '' }} @enderror"
-                                        readonly>
+                                    <input type="text" class="form-control border bg-dark @error('skill.title.0') border-danger text-danger @else border-success text-success @enderror" value="@error('skill.title.0') {{ $message }} @else {{ $skill->title[$value] ?? '' }} @enderror" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control border bg-dark" value={{ $skill->level[$value] ?? '' }}>
@@ -223,7 +220,33 @@
                                 </div>
                             </div>
                             @endforeach
-                           
+
+                            @foreach ($skills as $skill)
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control border bg-dark @error('skill.title.0') border-danger text-danger @else border-success text-success @enderror" value="@error('skill.title.0') {{ $message }} @else {{ $skill->title }} @enderror"
+                                        readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control border bg-dark" value={{ $skill->level }} readonly>
+                                </div>
+                                <div class="col-1 mt-2">
+                                    @if ($skill->status == 1)
+                                        <p class="text-success"><i class="mdi mdi-check"></i></p>
+                                    @else
+                                        <p class="text-warning"><i class="mdi mdi-close"></i></p>
+                                    @endif
+                                </div>
+                                <div class="col-2">
+                                    <a href="" class="btn btn-sm text-danger mt-2" wire:click.prevent="destroy({{ $skill }})"><i class="mdi mdi-trash-can-outline"></i></a>
+                                </div>
+
+                            </div>
+                            @endforeach
+
+
+                            
+
 
                             <div class="form-check form-check-flat form-check-success">
                                 <label class="form-check-label">
