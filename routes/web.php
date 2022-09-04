@@ -33,5 +33,7 @@ Route::prefix('admin')->group(function () {
     });
     Route::prefix('author')->group(function () {
         Route::get('/', App\Http\Livewire\Admin\Author\Author::class)->name('admin.author');
+        Route::get('/add-author', App\Http\Livewire\Admin\Author\AddAuthor::class)->name('admin.author.add-author');
+        Route::get('/edit-author/{author}', App\Http\Livewire\Admin\Author\EditAuthor::class)->name('admin.author.edit-author');
     });
 });

@@ -56,6 +56,7 @@
     <script src="{{ asset('admin-assets/js/dashboard.js') }}"></script>
     <!-- End custom js for this page -->
 
+
     @livewireScripts
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <x-livewire-alert::scripts />

@@ -24,7 +24,6 @@
                                 <thead>
                                     <tr>
                                         <th> User </th>
-                                        <th> Name </th>
                                         <th> Email </th>
                                         <th> Verified At </th>
                                         <th> Actions </th>
@@ -33,10 +32,6 @@
                                 <tbody>
                                     @foreach ($users as $user)
                                     <tr>
-                                        <td class="py-1">
-                                            <img src="{{  asset('admin-assets/images/faces-clipart/pic-1.png') }}"
-                                                alt="image">
-                                        </td>
                                         <td>{{ $user->name }}</td>
                                         {{-- <td>
                                             <div class="progress">

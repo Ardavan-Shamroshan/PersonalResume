@@ -64,8 +64,8 @@
           <span class="menu-title">dashboard</span>
         </a>
       </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="#ui-basic" >
+      <li class="nav-item menu-items {{ active('admin.author') }}">
+        <a class="nav-link" href="{{ route('admin.author') }}" >
           <span class="menu-icon">
             <i class="mdi mdi-laptop"></i>
           </span>
