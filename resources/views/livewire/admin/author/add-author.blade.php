@@ -93,19 +93,26 @@
                             </div>
 
                             @foreach ($inputs as $key => $value)
-                            <div class="row">
+                                <div class="row">
                                     <label for="skill_title_{{ $key }}">Skills</label>
                                     <div class="form-group col-6">
                                         <input type="text" class="form-control" id="skill_title_{{ $key }}" placeholder="Title" name="skill_title" wire:model.lazy="skill.title.{{ $value }}">
                                     </div>
                                     <div class="form-check form-check-success col-3">
                                         <label class="form-check-label" for="skill_status_{{ $key }}">
-                                            <input type="checkbox" class="form-check-input" name="skill_status" id="skill_status_{{ $key }}" wire:model.lazy="skill.status.{{ $value }}"> Activate <i class="input-helper"></i></label>
+                                            <input type="checkbox" class="form-check-input" name="skill_status" id="skill_status_{{ $key }}" wire:model.lazy="skill.status.{{ $value }}">
+                                            Activate <i class="input-helper"></i></label>
                                     </div>
-                                    <div class="form-group col-3">
-                                        <a wire:click.prevent="add({{ $i }})" class="card-title btn btn-sm btn-info btn-icon-text"><small> Add Skill <i class="mdi mdi-plus"></i></small></a>
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <a wire:click.prevent="add({{ $i }})" class="card-title btn btn-sm btn-info btn-icon-text"><small><i class="mdi mdi-plus"></i></small></a>
+                                        </div>
                                     </div>
-
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <a wire:click.prevent="remove({{ $i }})" class="card-title btn btn-sm btn-danger btn-icon-text"><small> <i class="mdi mdi-minus"></i></small></a>
+                                        </div>
+                                    </div>
                                     <div class="form-group col-12">
                                         <input type="range" name="rangeInput" min="0" max="100" id="skill_level_{{ $key }}" placeholder="Level" name="skill_level" wire:model.lazy="skill.level.{{ $value }}" onchange="updateTextInput(this.value);">
                                     </div>
@@ -135,8 +142,8 @@
                         <form class="forms-sample">
                             <div class="row form-group">
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control border bg-dark @error('author.first_name') border-danger text-danger @else border-success text-success @enderror" value="@error('author.first_name') {{ $message }} @else {{ $author->first_name ?? '' }} @enderror"
-                                        readonly>
+                                    <input type="text" class="form-control border bg-dark @error('author.first_name') border-danger text-danger @else border-success text-success @enderror"
+                                        value="@error('author.first_name') {{ $message }} @else {{ $author->first_name ?? '' }} @enderror" readonly>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control border bg-dark @error('author.last_name') border-danger text-danger @else border-success text-success @enderror" value="@error('author.last_name') {{ $message }} @else {{ $author->last_name ?? '' }} @enderror"
@@ -190,7 +197,7 @@
                                         readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control border bg-dark" value={{ $skill->level[0] ?? '' }} readonly>
+                                    <input type="text" class="form-control border bg-dark" value={{ $skill->level[0] ?? '' }}>
                                 </div>
                                 <div class="col-4 mt-2">
                                     @if ($skill->status[0] ?? 0 == 1)
@@ -202,24 +209,24 @@
                             </div>
 
                             @foreach ($inputs as $key => $value)
-                            <div class="form-group row">
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control border bg-dark @error('skill.title.0') border-danger text-danger @else border-success text-success @enderror" value="@error('skill.title.0') {{ $message }} @else {{ $skill->title[$value] ?? '' }} @enderror"
-                                        readonly>
+                                <div class="form-group row">
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control border bg-dark @error('skill.title.0') border-danger text-danger @else border-success text-success @enderror" value="@error('skill.title.0') {{ $message }} @else {{ $skill->title[$value] ?? '' }} @enderror"
+                                            readonly>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control border bg-dark" value={{ $skill->level[$value] ?? '' }}>
+                                    </div>
+                                    <div class="col-4 mt-2">
+                                        @if ($skill->status[$value] ?? 0 == 1)
+                                            <p class="text-success"><i class="mdi mdi-check"></i> is active</p>
+                                        @else
+                                            <p class="text-warning"><i class="mdi mdi-close"></i> is deactive</p>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control border bg-dark" value={{ $skill->level[$value] ?? '' }}>
-                                </div>
-                                <div class="col-4 mt-2">
-                                    @if ($skill->status[$value] ?? 0 == 1)
-                                        <p class="text-success"><i class="mdi mdi-check"></i> is active</p>
-                                    @else
-                                        <p class="text-warning"><i class="mdi mdi-close"></i> is deactive</p>
-                                    @endif
-                                </div>
-                            </div>
                             @endforeach
-                           
+
 
                             <div class="form-check form-check-flat form-check-success">
                                 <label class="form-check-label">

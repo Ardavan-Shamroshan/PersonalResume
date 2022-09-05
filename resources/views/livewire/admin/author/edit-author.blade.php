@@ -103,8 +103,16 @@
                                         <label class="form-check-label" for="skill_status_{{ $key }}">
                                             <input type="checkbox" class="form-check-input" name="skill_status" id="skill_status_{{ $key }}" wire:model.lazy="skill.status.{{ $value }}"> Activate <i class="input-helper"></i></label>
                                     </div>
-                                    <div class="form-group col-3">
-                                        <a wire:click.prevent="add({{ $i }})" class="card-title btn btn-sm btn-info btn-icon-text"><small> Add Skill <i class="mdi mdi-plus"></i></small></a>
+                                    
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <a wire:click.prevent="add({{ $i }})" class="card-title btn btn-sm btn-info btn-icon-text"><small><i class="mdi mdi-plus"></i></small></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="form-group">
+                                            <a wire:click.prevent="remove({{ $i }})" class="card-title btn btn-sm btn-danger btn-icon-text"><small> <i class="mdi mdi-minus"></i></small></a>
+                                        </div>
                                     </div>
 
                                     <div class="form-group col-12">
@@ -245,7 +253,7 @@
                             @endforeach
 
 
-                            
+
 
 
                             <div class="form-check form-check-flat form-check-success">

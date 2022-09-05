@@ -30,14 +30,20 @@ class EditAuthor extends Component
 
     public function add($i)
     {
-        $i = $i + 1;
+        $i += 1;
         $this->i = $i;
         array_push($this->inputs, $i);
     }
 
+
     public function remove($i)
     {
-        unset($this->inputs[$i]);
+        $key = array_search($i, $this->inputs);
+        if ($key !== false) {
+            unset($this->inputs[$key]);
+            $i -= 1;
+            $this->i = $i;
+        }
     }
 
     // validation rules
