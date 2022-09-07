@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Admin\Author;
 
 use Livewire\Component;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Author as ModelsAuthor;
+use Illuminate\Support\Facades\DB;
 use App\Models\Skill as ModelsSkill;
+use App\Models\Author as ModelsAuthor;
+use App\Models\Category as ModelsCategory;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class AddAuthor extends Component
@@ -15,9 +15,11 @@ class AddAuthor extends Component
 
     public $author;
     public $skill;
+    public $categories;
 
-    public $inputs = [];
-    public $i = 0;
+    // properties needed for extra inputs
+    public $inputs = []; // extra inputs saves here
+    public $i = 0; // number of inputs saves here
 
     // get the Author model instance
     public function mount()
@@ -26,6 +28,7 @@ class AddAuthor extends Component
         $this->skill = new ModelsSkill;
     }
 
+    // add an extra input realtime
     public function add($i)
     {
         $i += 1;
@@ -33,6 +36,7 @@ class AddAuthor extends Component
         array_push($this->inputs, $i);
     }
 
+    // remove an extra input realtime
     public function remove($i)
     {
         $key = array_search($i, $this->inputs);
@@ -58,13 +62,17 @@ class AddAuthor extends Component
         'skill.title.0' => ['required'],
         'skill.level.0' => ['required'],
         'skill.status.0' => ['required'],
+        'skill.category_id.0' => ['required'],
         // multi skill inputs validation
         'skill.title.*' => 'required',
         'skill.level.*' => 'required',
         'skill.status.*' => 'required',
+        'skill.category_id.*' => 'required',
+
     ];
 
 
+    // Runs after an property of Category updates
     public function updated($author)
     {
         $this->validateOnly($author);
@@ -83,25 +91,29 @@ class AddAuthor extends Component
         $skillsLevel = $validatedSkillData['level']; // skill level data
         $skillsStatus = $validatedSkillData['status']; // skill status data
 
-        // creaate author
-        $author = ModelsAuthor::query()->create($validatedAuthorData);
+        DB::transaction(function () use ($validatedAuthorData, $skillsTitle, $skillsLevel, $skillsStatus) {
+            // creaate author
+            $author = ModelsAuthor::query()->create($validatedAuthorData);
 
-        // create skill
-        foreach ($skillsTitle as $key => $value) {
-            $skill = ModelsSkill::create([
-                'author_id' => $author->id,
-                'title' => $value,
-                'level' => $skillsLevel[$key],
-                'status' => $skillsStatus[$key],
-            ]);
-        }
+            // create skill
+            foreach ($skillsTitle as $key => $value) {
+                $skill = ModelsSkill::create([
+                    'author_id' => $author->id,
+                    'title' => $value,
+                    'level' => $skillsLevel[$key],
+                    'status' => $skillsStatus[$key],
+                ]);
+            }
+        });
+
 
         $this->alert('success', 'author created successfully');
+
         return redirect()->route('admin.author');
     }
 
     // Save and directly edit the record
-    public function SaveAndEdit()
+    public function saveAndEdit()
     {
         // validated author data
         $validatedAuthorData = $this->validate()['author'];
@@ -112,26 +124,26 @@ class AddAuthor extends Component
         $skillsTitle = $validatedSkillData['title']; // skill titles data
         $skillsLevel = $validatedSkillData['level']; // skill level data
         $skillsStatus = $validatedSkillData['status']; // skill status data
+        DB::transaction(function () use ($validatedAuthorData, $skillsTitle, $skillsLevel, $skillsStatus) {
+            // creaate author
+            $author = ModelsAuthor::query()->create($validatedAuthorData);
 
-        // creaate author
-        $author = ModelsAuthor::query()->create($validatedAuthorData);
-
-        // create skill
-        foreach ($skillsTitle as $key => $value) {
-            $skill = ModelsSkill::create([
-                'author_id' => $author->id,
-                'title' => $value,
-                'level' => $skillsLevel[$key],
-                'status' => $skillsStatus[$key],
-            ]);
-        }
-
-        $this->alert('success', 'author created successfully');
-        return redirect()->route('admin.author.edit-author', $author);
+            // create skill
+            foreach ($skillsTitle as $key => $value) {
+                $skill = ModelsSkill::create([
+                    'author_id' => $author->id,
+                    'title' => $value,
+                    'level' => $skillsLevel[$key],
+                    'status' => $skillsStatus[$key],
+                ]);
+            }
+            $this->alert('success', 'author created successfully');
+            return redirect()->route('admin.author.edit-author', $author);
+        });
     }
 
     // Save and directly register new record
-    public function SaveAndNew()
+    public function saveAndNew()
     {
         // validated author data
         $validatedAuthorData = $this->validate()['author'];
@@ -143,18 +155,20 @@ class AddAuthor extends Component
         $skillsLevel = $validatedSkillData['level']; // skill level data
         $skillsStatus = $validatedSkillData['status']; // skill status data
 
-        // creaate author
-        $author = ModelsAuthor::query()->create($validatedAuthorData);
+        DB::transaction(function () use ($validatedAuthorData, $skillsTitle, $skillsLevel, $skillsStatus) {
+            // creaate author
+            $author = ModelsAuthor::query()->create($validatedAuthorData);
 
-        // create skill
-        foreach ($skillsTitle as $key => $value) {
-            $skill = ModelsSkill::create([
-                'author_id' => $author->id,
-                'title' => $value,
-                'level' => $skillsLevel[$key],
-                'status' => $skillsStatus[$key],
-            ]);
-        }
+            // create skill
+            foreach ($skillsTitle as $key => $value) {
+                $skill = ModelsSkill::create([
+                    'author_id' => $author->id,
+                    'title' => $value,
+                    'level' => $skillsLevel[$key],
+                    'status' => $skillsStatus[$key],
+                ]);
+            }
+        });
 
         $this->alert('success', 'author created successfully');
         return redirect()->route('admin.author.add-author');
@@ -170,6 +184,7 @@ class AddAuthor extends Component
 
     public function render()
     {
+        $this->categories = ModelsCategory::all();
         return view('livewire.admin.author.add-author')
             ->layout('livewire.admin.layouts.master');
     }

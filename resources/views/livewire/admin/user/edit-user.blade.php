@@ -44,9 +44,9 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton3">
                                     <a class="dropdown-item @if ($errors->any()) disabled-link @endif"
-                                       href="#" wire:click="SaveAndEdit">Save and edit this item</a>
+                                       href="#" wire:click="saveAndEdit">Save and edit this item</a>
                                     <a class="dropdown-item @if ($errors->any()) disabled-link @endif"
-                                       href="#" wire:click="SaveAndNew">Save and new item</a>
+                                       href="#" wire:click="saveAndNew">Save and new item</a>
                                 </div>
                             </div>
                             <a type="button" class="btn btn-secondary me-2" wire:click="resetFilters"><i class="mdi mdi-cancel"></i>Cancel</a>

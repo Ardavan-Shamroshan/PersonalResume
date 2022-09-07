@@ -36,4 +36,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/add-author', App\Http\Livewire\Admin\Author\AddAuthor::class)->name('admin.author.add-author');
         Route::get('/edit-author/{author}', App\Http\Livewire\Admin\Author\EditAuthor::class)->name('admin.author.edit-author');
     });
+     Route::prefix('category')->group(function () {
+        Route::get('/', App\Http\Livewire\Admin\Category\Category::class)->name('admin.category');
+        Route::get('/add-category', App\Http\Livewire\Admin\Category\AddCategory::class)->name('admin.category.add-category');
+        Route::get('/edit-category/{category}', App\Http\Livewire\Admin\Category\EditCategory::class)->name('admin.category.edit-category');
+    });
 });

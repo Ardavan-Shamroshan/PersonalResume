@@ -46,7 +46,7 @@ class AddUser extends Component
     }
 
     // Save and directly edit the record
-    public function SaveAndEdit()
+    public function saveAndEdit()
     {
         $validatedData = $this->validate()['user'];
         $validatedData['password'] = Hash::make($validatedData['password']);
@@ -57,7 +57,7 @@ class AddUser extends Component
     }
 
     // Save and directly register new record
-    public function SaveAndNew()
+    public function saveAndNew()
     {
         $validatedData = $this->validate()['user'];
         $validatedData['password'] = Hash::make($validatedData['password']);

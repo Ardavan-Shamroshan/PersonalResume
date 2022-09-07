@@ -108,7 +108,7 @@ class EditAuthor extends Component
     }
 
     // Save and directly edit the record
-    public function SaveAndEdit()
+    public function saveAndEdit()
     { // validated author data
         $validatedAuthorData = $this->validate()['author'];
 
@@ -140,7 +140,7 @@ class EditAuthor extends Component
     }
 
     // Save and directly register new record
-    public function SaveAndNew()
+    public function saveAndNew()
     {
         // validated author data
         $validatedAuthorData = $this->validate()['author'];

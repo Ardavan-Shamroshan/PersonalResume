@@ -67,13 +67,13 @@
       <li class="nav-item menu-items {{ active('admin.author') }}">
         <a class="nav-link" href="{{ route('admin.author') }}" >
           <span class="menu-icon">
-            <i class="mdi mdi-laptop"></i>
+            <i class="mdi mdi-account"></i>
           </span>
           <span class="menu-title">authors</span>
         </a>
       </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+      <li class="nav-item menu-items {{ active('admin.category') }}">
+        <a class="nav-link" href="{{  route('admin.category') }}">
           <span class="menu-icon">
             <i class="mdi mdi-playlist-play"></i>
           </span>
@@ -83,14 +83,14 @@
       <li class="nav-item menu-items">
         <a class="nav-link" href="pages/icons/mdi.html">
           <span class="menu-icon">
-            <i class="mdi mdi-contacts"></i>
+            <i class="mdi mdi-newspaper"></i>
           </span>
           <span class="menu-title">posts</span>
         </a>
       </li> <li class="nav-item menu-items">
         <a class="nav-link" href="pages/icons/mdi.html">
           <span class="menu-icon">
-            <i class="mdi mdi-contacts"></i>
+            <i class="mdi mdi-bike"></i>
           </span>
           <span class="menu-title">skills</span>
         </a>
@@ -98,7 +98,7 @@
       <li class="nav-item menu-items">
         <a class="nav-link" href="pages/tables/basic-table.html">
           <span class="menu-icon">
-            <i class="mdi mdi-table-large"></i>
+            <i class="mdi mdi-web"></i>
           </span>
           <span class="menu-title">sample and projects</span>
         </a>
@@ -116,7 +116,7 @@
       <li class="nav-item menu-items {{ active('admin.user') }}">
         <a class="nav-link" href="{{ route('admin.user') }}">
           <span class="menu-icon">
-            <i class="mdi mdi-security"></i>
+            <i class="mdi mdi-account-group"></i>
           </span>
           <span class="menu-title">uesrs</span>
         </a>
@@ -124,7 +124,7 @@
       <li class="nav-item menu-items">
         <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
           <span class="menu-icon">
-            <i class="mdi mdi-file-document-box"></i>
+            <i class="mdi mdi-settings-outline"></i>
           </span>
           <span class="menu-title">setting</span>
         </a>

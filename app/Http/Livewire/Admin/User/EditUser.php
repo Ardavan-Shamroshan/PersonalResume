@@ -36,7 +36,7 @@ class EditUser extends Component
     }
 
     // Edit and directly edit again the record
-    public function SaveAndEdit()
+    public function saveAndEdit()
     {
         $validatedData = $this->validate()['user'];
         $validatedData['email_verified_at'] = $this->user->email_verified_at;
@@ -46,7 +46,7 @@ class EditUser extends Component
     }
 
     // Edit and directly register new record
-    public function SaveAndNew()
+    public function saveAndNew()
     {
         $validatedData = $this->validate()['user'];
         $validatedData['email_verified_at'] = $this->user->email_verified_at;

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
             $table->foreignId('author_id')->constrained('authors')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
             $table->integer('level');
             $table->tinyInteger('status')->default(0);

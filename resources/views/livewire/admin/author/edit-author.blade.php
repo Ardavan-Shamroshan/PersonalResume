@@ -103,7 +103,7 @@
                                         <label class="form-check-label" for="skill_status_{{ $key }}">
                                             <input type="checkbox" class="form-check-input" name="skill_status" id="skill_status_{{ $key }}" wire:model.lazy="skill.status.{{ $value }}"> Activate <i class="input-helper"></i></label>
                                     </div>
-                                    
+
                                     <div class="col-1">
                                         <div class="form-group">
                                             <a wire:click.prevent="add({{ $i }})" class="card-title btn btn-sm btn-info btn-icon-text"><small><i class="mdi mdi-plus"></i></small></a>
@@ -126,8 +126,8 @@
                                 <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton3">
-                                    <a class="dropdown-item @if ($errors->any()) disabled-link @endif" href="#" wire:click="SaveAndEdit">Save and edit this item</a>
-                                    <a class="dropdown-item @if ($errors->any()) disabled-link @endif" href="#" wire:click="SaveAndNew">Save and new item</a>
+                                    <a class="dropdown-item @if ($errors->any()) disabled-link @endif" href="#" wire:click="saveAndEdit">Save and edit this item</a>
+                                    <a class="dropdown-item @if ($errors->any()) disabled-link @endif" href="#" wire:click="saveAndNew">Save and new item</a>
                                 </div>
                             </div>
                             <a type="button" class="btn btn-secondary me-2" wire:click="resetFilters"><i class="mdi mdi-cancel"></i>Cancel</a>
