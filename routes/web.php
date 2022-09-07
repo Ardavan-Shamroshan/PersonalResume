@@ -41,4 +41,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/add-category', App\Http\Livewire\Admin\Category\AddCategory::class)->name('admin.category.add-category');
         Route::get('/edit-category/{category}', App\Http\Livewire\Admin\Category\EditCategory::class)->name('admin.category.edit-category');
     });
+    Route::prefix('skill')->group(function () {
+        Route::get('/', App\Http\Livewire\Admin\Skill\Skill::class)->name('admin.skill');
+    //     Route::get('/add-category', App\Http\Livewire\Admin\Category\AddCategory::class)->name('admin.category.add-category');
+    //     Route::get('/edit-category/{category}', App\Http\Livewire\Admin\Category\EditCategory::class)->name('admin.category.edit-category');
+    });
 });

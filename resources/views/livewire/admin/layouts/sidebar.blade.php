@@ -87,8 +87,8 @@
           </span>
           <span class="menu-title">posts</span>
         </a>
-      </li> <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/icons/mdi.html">
+      </li> <li class="nav-item menu-items {{ active('admin.skill') }}">
+        <a class="nav-link" href="{{ route('admin.skill') }}">
           <span class="menu-icon">
             <i class="mdi mdi-bike"></i>
           </span>

@@ -62,12 +62,13 @@ class AddAuthor extends Component
         'skill.title.0' => ['required'],
         'skill.level.0' => ['required'],
         'skill.status.0' => ['required'],
-        'skill.category_id.0' => ['required'],
+        // 'skill.category_id.0' => ['required'],
+
         // multi skill inputs validation
         'skill.title.*' => 'required',
         'skill.level.*' => 'required',
         'skill.status.*' => 'required',
-        'skill.category_id.*' => 'required',
+        // 'skill.category_id.*' => 'required',
 
     ];
 
