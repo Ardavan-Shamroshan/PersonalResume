@@ -46,4 +46,14 @@ Route::prefix('admin')->group(function () {
     //     Route::get('/add-category', App\Http\Livewire\Admin\Category\AddCategory::class)->name('admin.category.add-category');
     //     Route::get('/edit-category/{category}', App\Http\Livewire\Admin\Category\EditCategory::class)->name('admin.category.edit-category');
     });
+    Route::prefix('experience')->group(function () {
+        Route::get('/', App\Http\Livewire\Admin\Experience\Experience::class)->name('admin.experience');
+        Route::get('/add-experience', App\Http\Livewire\Admin\Experience\AddExperience::class)->name('admin.experience.add-experience');
+        Route::get('/edit-experience/{experience}', App\Http\Livewire\Admin\Experience\EditExperience::class)->name('admin.experience.edit-experience');
+    });
+    Route::prefix('project')->group(function () {
+        Route::get('/', App\Http\Livewire\Admin\Project\Project::class)->name('admin.project');
+        Route::get('/add-project', App\Http\Livewire\Admin\Project\AddProject::class)->name('admin.project.add-project');
+        Route::get('/edit-project/{project}', App\Http\Livewire\Admin\Project\EditProject::class)->name('admin.project.edit-project');
+    });
 });

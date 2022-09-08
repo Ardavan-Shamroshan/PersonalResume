@@ -42,7 +42,8 @@
                                             <div class="progress">
                                                 <div class="progress-bar {{ $skill->progressBarBG }}" role="progressbar"
                                                     style="width: {{ $skill->level }}%" aria-valuenow="25"
-                                                    aria-valuemin="0" aria-valuemax="100"> {{ $skill->level }}</div>
+                                                    aria-valuemin="0" aria-valuemax="100">{{ $skill->level }}%
+                                                </div>
                                             </div>
                                         </td>
                                         <td>{{ $skill->category ?? '-' }}</td>

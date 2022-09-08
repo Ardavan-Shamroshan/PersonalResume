@@ -104,8 +104,8 @@
         </a>
       </li>
 
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/charts/chartjs.html">
+      <li class="nav-item menu-items {{ active('admin.experience') }}">
+        <a class="nav-link" href="{{ route('admin.experience') }}">
           <span class="menu-icon">
             <i class="mdi mdi-chart-bar"></i>
           </span>

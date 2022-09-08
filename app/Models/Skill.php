@@ -35,6 +35,7 @@ class Skill extends Model
             get: fn () => $this->status == 0 ? 'غیر فعال' : 'فعال',
         );
     }
+
     public function progressBarBG(): Attribute
     {
         return Attribute::make(
