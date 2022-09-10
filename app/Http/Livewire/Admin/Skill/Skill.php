@@ -15,9 +15,6 @@ class Skill extends Component
         'confirmed'
     ];
 
-    // get all skills
-    public $skills;
-
     // get the specific skill
     public ModelsSkill $skill;
 
@@ -52,8 +49,8 @@ class Skill extends Component
 
     public function render()
     {
-        $this->skills = ModelsSkill::all();
-        return view('livewire.admin.skill.skill', ['skills' => $this->skills])
+        $skills = ModelsSkill::all();
+        return view('livewire.admin.skill.skill', ['skills' => $skills])
         ->layout('livewire.admin.layouts.master');
     }
 }

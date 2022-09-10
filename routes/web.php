@@ -56,4 +56,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/add-project', App\Http\Livewire\Admin\Project\AddProject::class)->name('admin.project.add-project');
         Route::get('/edit-project/{project}', App\Http\Livewire\Admin\Project\EditProject::class)->name('admin.project.edit-project');
     });
+
+    Route::prefix('post')->group(function () {
+        Route::get('/', App\Http\Livewire\Admin\Post\Post::class)->name('admin.post');
+        Route::get('/add-post', App\Http\Livewire\Admin\Post\AddPost::class)->name('admin.post.add-post');
+        Route::get('/edit-post/{post}', App\Http\Livewire\Admin\Post\EditPost::class)->name('admin.post.edit-post');
+    });
 });

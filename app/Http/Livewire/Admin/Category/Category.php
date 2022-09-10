@@ -50,8 +50,8 @@ class Category extends Component
 
     public function render()
     {
-        $this->categories = ModelsCategory::all();
-        return view('livewire.admin.category.category', ['categories' => $this->categories])
+        $categories = ModelsCategory::all();
+        return view('livewire.admin.category.category', ['categories' => $categories])
             ->layout('livewire.admin.layouts.master');
     }
 }

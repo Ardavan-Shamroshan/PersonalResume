@@ -49,8 +49,8 @@ class Experience extends Component
 
     public function render()
     {
-        $this->experiences = ModelsExperience::all();
-        return view('livewire.admin.experience.experience', ['experiences' => $this->experiences])
+        $experiences = ModelsExperience::all();
+        return view('livewire.admin.experience.experience', ['experiences' => $experiences])
             ->layout('livewire.admin.layouts.master');
     }
 }

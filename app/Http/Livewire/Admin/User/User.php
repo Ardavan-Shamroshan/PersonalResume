@@ -10,9 +10,6 @@ class User extends Component
 {
     use LivewireAlert;
 
-    // all users
-    public $users;
-
     // get the specific user for delete operation
     public ModelsUser $user;
 
@@ -43,8 +40,8 @@ class User extends Component
 
     public function render()
     {
-        $this->users = ModelsUser::all();
-        return view('livewire.admin.user.user', ['users' => $this->users])
+        $users = ModelsUser::all();
+        return view('livewire.admin.user.user', ['users' => $users])
             ->layout('livewire.admin.layouts.master');
     }
 }

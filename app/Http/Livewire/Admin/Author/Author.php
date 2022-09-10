@@ -9,9 +9,6 @@ use Livewire\Component;
 class Author extends Component
 {
     use LivewireAlert;
-    
-    // all authors
-    public $authors;
 
     // get the specific user for delete operation
     public ModelsAuthor $author;
@@ -43,8 +40,8 @@ class Author extends Component
 
     public function render()
     {
-        $this->authors = ModelsAuthor::all();
-        return view('livewire.admin.author.author', ['authors' => $this->authors])
+        $authors = ModelsAuthor::all();
+        return view('livewire.admin.author.author', ['authors' => $authors])
             ->layout('livewire.admin.layouts.master');
     }
 }

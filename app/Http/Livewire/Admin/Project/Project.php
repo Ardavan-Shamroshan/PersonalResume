@@ -8,7 +8,6 @@ use App\Models\Project as ModelsProject;
 
 class Project extends Component
 {
-
     use LivewireAlert;
 
     // get the specific projects for delete operation
@@ -50,8 +49,8 @@ class Project extends Component
 
     public function render()
     {
-        $this->projects = ModelsProject::all();
-        return view('livewire.admin.project.project', ['projects' => $this->projects])
+        $projects = ModelsProject::all();
+        return view('livewire.admin.project.project', ['projects' => $projects])
             ->layout('livewire.admin.layouts.master');
     }
 }

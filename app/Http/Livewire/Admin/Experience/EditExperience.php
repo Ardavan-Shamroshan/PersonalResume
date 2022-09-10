@@ -9,12 +9,10 @@ use App\Models\Experience as ModelsExperience;
 
 class EditExperience extends Component
 {
-
     use LivewireAlert;
 
     // experience property
     public ModelsExperience $experience;
-
 
     // get all authors
     public $authors;

@@ -7,21 +7,21 @@
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="page-header">
-            <h2> Projects</h2>
+            <h2> Posts</h2>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.project') }}">Projects</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.post') }}">Posts</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Add</li>
                 </ol>
             </nav>
         </div>
 
         <div class="mb-2">
-            <small class="text-muted">Add Project.</small>
-            <a href="{{ route('admin.project') }}" class="btn btn-sm">
+            <small class="text-muted">Add Post.</small>
+            <a href="{{ route('admin.post') }}" class="btn btn-sm">
                 <small class="card-description"> <i class="mdi mdi-arrow-left-circle-outline"></i> Back to all
-                    Projects
+                    Posts
                 </small>
             </a>
         </div>
@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <form class="forms-sample" wire:submit.prevent="submit">
                             <div class="form-group" wire:ignore>
-                                <label for="title">Title</label>
+                                <label for="select2-dropdown">Author</label>
                                 <select class="form-control" id="select2-dropdown">
                                     <option>مولف مورد نظر را انتخاب کنید</option>
                                     @foreach ($authors as $author)
@@ -42,30 +42,41 @@
                                 </select>
                             </div>
 
+                            <div class="form-group" wire:ignore>
+                                <label for="select2-dropdown-2">Category</label>
+                                <select class="form-control" id="select2-dropdown-2">
+                                    <option>دسته بندی مورد نظر را انتخاب کنید</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control" id="title" placeholder="title" name="project.title" wire:model.lazy="project.title">
+                                <input type="text" class="form-control" id="title" placeholder="title" name="post.title" wire:model.lazy="post.title">
                             </div>
 
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <input type="text" class="form-control" id="description" placeholder="description" name="project.description" wire:model.lazy="project.description">
-                            </div>
+
+                            {{-- <div class="form-group">
+                                <label for="summary">Summary</label>
+                                <textarea class="form-control" id="summary" placeholder="summary" name="post.summary" wire:model.lazy="post.summary" style="min-height: 7rem"></textarea>
+                            </div> --}}
 
                             <div class="form-group">
-                                <label for="link">Link</label>
-                                <input type="text" class="form-control" id="link" placeholder="example: https://example.com" name="project.link" wire:model.lazy="project.link">
+                                <label for="body">Body</label>
+                                <textarea dir="rtl" class="form-control" id="body" placeholder="body" name="post.body" wire:model.lazy="post.body" class="w-100" style="min-height: 15rem; line-height:1.2rem"></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="image">Image</label>
-                                <input type="file" class="form-control" id="image" placeholder="Image" name="projectImage" wire:model.lazy="projectImage">
+                                <input type="file" class="form-control" id="image" placeholder="Image" name="postImage" wire:model.lazy="postImage">
                             </div>
 
 
                             <div class="form-check form-check-success col-4 mt-4">
                                 <label class="form-check-label" for="status">
-                                    <input type="checkbox" class="form-check-input" name="status" id="status" wire:model.lazy="project.status"> Activate <i class="input-helper"></i></label>
+                                    <input type="checkbox" class="form-check-input" name="status" id="status" wire:model.lazy="post.status"> Activate <i class="input-helper"></i></label>
                             </div>
 
 
@@ -91,37 +102,44 @@
                         <p class="card-description"> you can preview your data validation here </p>
                         <form class="forms-sample">
                             <div class="form-group row">
-
                                 <div class="col-12">
-                                    <input type="text" class="form-control border bg-dark @error('project.author_id') border-danger text-danger @else border-success text-success @enderror"
-                                        value="@error('project.author_id') {{ $message }} @else {{ $project->author->fullname ?? '' }} @enderror" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <input type="text" class="form-control border bg-dark @error('project.title') border-danger text-danger @else border-success text-success @enderror" value="@error('project.title') {{ $message }} @else {{ $project->title ?? '' }} @enderror" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <input type="text" class="form-control border bg-dark @error('project.description') border-danger text-danger @else border-success text-success @enderror"
-                                        value="@error('project.description') {{ $message }} @else {{ $project->description ?? '' }} @enderror" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <input type="text" class="form-control border bg-dark @error('project.link') border-danger text-danger @else border-success text-success @enderror" value="@error('project.link') {{ $message }} @else {{ $project->link ?? '' }} @enderror" readonly>
+                                    <input type="text" class="form-control border bg-dark @error('post.author_id') border-danger text-danger @else border-success text-success @enderror" value="@error('post.author_id') {{ $message }} @else {{ $post->author->fullname ?? '' }} @enderror" readonly>
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input type="text" class="form-control border bg-dark @error('post.category_id') border-danger text-danger @else border-success text-success @enderror" value="@error('post.category_id') {{ $message }} @else {{ $post->category->title ?? '' }} @enderror" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input type="text" class="form-control border bg-dark @error('post.title') border-danger text-danger @else border-success text-success @enderror" value="@error('post.title') {{ $message }} @else {{ $post->title ?? '' }} @enderror" readonly>
+                                </div>
+                            </div>
+
+                            {{-- <div class="form-group row">
+                                <div class="col-12">
+                                    <textarea type="text" class="form-control border bg-dark @error('post.summary') border-danger text-danger @else border-success text-success @enderror" readonly style="min-height: 7rem"> @error('post.summary') {{ $message }} @else {{ $post->summary ?? '' }} @enderror </textarea>
+                                </div>
+                            </div> --}}
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <textarea dir="rtl" class="form-control border bg-dark @error('post.body') border-danger text-danger @else border-success text-success @enderror" readonly style="min-height: 15rem; line-height:1.2rem"> @error('post.body') {{ $message }} @else {{ $post->body ?? '' }} @enderror </textarea>
+                                </div>
+                            </div>
 
                             <div class="form-group row position-relative ">
-                                <div wire:loading wire:target="projectImage" wire:key="projectImage" class="position-absolute top-50" style="left:43%">
+                                <div wire:loading wire:target="postImage" wire:key="postImage" class="position-absolute top-50" style="left:43%">
                                     <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
                                 </div>
                                 <div class="item">
-                                    @if ($projectImage)
-                                        <img src="{{ $projectImage->temporaryUrl() }}" class="rounded border p-1 w-100" alt="preview.png" height="200">
+                                    @if (!$postImage && $post->image)
+                                        <img src="{{ asset($post->image) }}" class="rounded border p-1 w-100" alt="preview.png" height="200">
+                                    @elseif($postImage)
+                                        <img src="{{ $postImage->temporaryUrl() }}" class="rounded border p-1 w-100" alt="preview.png" height="200">
                                     @else
                                         <img src="{{ asset('images/built-in/no-preview.png') }}" class="rounded border p-1 w-100" alt="preview.png" height="200">
                                     @endif
@@ -131,7 +149,7 @@
 
                             <div class="form-group row">
                                 <div class="col-12 mt-2">
-                                    @if ($project->status ?? 0 == 1)
+                                    @if ($post->status ?? 0 == 1)
                                         <p class="text-success"><i class="mdi mdi-check"></i> is active</p>
                                     @else
                                         <p class="text-warning"><i class="mdi mdi-close"></i> is deactive</p>
@@ -161,7 +179,15 @@
             $('#select2-dropdown').select2();
             $('#select2-dropdown').on('change', function(e) {
                 var data = $('#select2-dropdown').select2("val");
-                @this.set('project.author_id', data);
+                @this.set('post.author_id', data);
+            });
+        });
+
+        $(document).ready(function() {
+            $('#select2-dropdown-2').select2();
+            $('#select2-dropdown-2').on('change', function(e) {
+                var data = $('#select2-dropdown-2').select2("val");
+                @this.set('post.category_id', data);
             });
         });
     </script>

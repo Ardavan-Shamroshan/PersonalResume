@@ -52,7 +52,7 @@
 
                             <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="text" class="form-control" id="date" placeholder="excample: آذر 1400" name="experience.date" wire:model.lazy="experience.date">
+                                <input type="text" class="form-control" id="date" placeholder="example: آذر 1400" name="experience.date" wire:model.lazy="experience.date">
                             </div>
 
 
