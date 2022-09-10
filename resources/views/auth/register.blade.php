@@ -48,7 +48,7 @@
              <!-- Email Address -->
              <div class="mt-4">
                 <x-label for="photo" :value="__('Select a profile')" class="bg-gray-800 block font-medium p-2 rounded-md table text-gray-700 font-semibold text-sm text-white uppercase" />
-                <x-input id="photo" class="block mt-1 w-full p-1 border w-4" type="file" name="photo" required style="opacity: 0; position: absolute; z-index: -1;"/>
+                <x-input id="photo" class="block mt-1 w-full p-1 border w-4" type="file" name="photo" style="opacity: 0; position: absolute; z-index: -1;"/>
             </div>
 
             <div class="flex items-center justify-end mt-4">

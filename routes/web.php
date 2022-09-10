@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -23,8 +23,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth','verified', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', App\Http\Livewire\Admin\AdminDashboard::class)->name('admin.dashboard');
     Route::prefix('user')->group(function () {
         Route::get('/', App\Http\Livewire\Admin\User\User::class)->name('admin.user');

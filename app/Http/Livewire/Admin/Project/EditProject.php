@@ -106,7 +106,7 @@ class EditProject extends Component
         $data = $this->validate()['project'];
 
         // if new image defined for project
-        if ($this->projectImage) {
+        if ($this->projectImage) :
             // image upload
             // set name for image to upload - current timestamp.image extension (1662656825.jpg)
             $projectImageName = Carbon::now()->timestamp . '.' . $this->projectImage->extension();
@@ -120,7 +120,7 @@ class EditProject extends Component
             // delete previous image from directory
             if (File::exists($this->project->image))
                 File::delete($this->project->image);
-        }
+        endif;
 
         // update project
         $this->project->update($data);
