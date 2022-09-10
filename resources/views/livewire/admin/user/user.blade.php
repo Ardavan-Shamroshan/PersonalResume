@@ -33,13 +33,7 @@
                                     @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->name }}</td>
-                                        {{-- <td>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                    style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </td> --}}
+
                                         <td><a href="mailto:{{ $user->email }}" class="btn btn-sm">{{ $user->email }}
                                             </a></td>
                                         <td>

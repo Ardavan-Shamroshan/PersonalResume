@@ -121,8 +121,8 @@
           <span class="menu-title">uesrs</span>
         </a>
       </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
+      <li class="nav-item menu-items {{ active('admin.setting') }}">
+        <a class="nav-link" href="{{ route('admin.setting') }}">
           <span class="menu-icon">
             <i class="mdi mdi-settings-outline"></i>
           </span>

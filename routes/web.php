@@ -62,4 +62,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/add-post', App\Http\Livewire\Admin\Post\AddPost::class)->name('admin.post.add-post');
         Route::get('/edit-post/{post}', App\Http\Livewire\Admin\Post\EditPost::class)->name('admin.post.edit-post');
     });
+
+    Route::get('/setting', App\Http\Livewire\Admin\Setting\Setting::class)->name('admin.setting');
 });
