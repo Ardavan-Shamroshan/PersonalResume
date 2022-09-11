@@ -10,10 +10,9 @@
 
             <div class="tokyo_tm_all_wrap" data-magic-cursor="" data-color="black">
 
-
-                <livewire:home.layouts.modal-box />
                 <livewire:home.layouts.left-part />
-                <livewire:home.layouts.right-part />
+
+                {{ $slot }}
 
                 <div class="mouse-cursor cursor-outer"></div>
                 <div class="mouse-cursor cursor-inner"></div>

@@ -34,7 +34,7 @@
                                     @foreach ($authors as $author)
                                     <tr>
                                         <td class="py-1">
-                                            <img src="{{  asset('admin-assets/images/faces-clipart/pic-1.png') }}" alt="image">
+                                            <img src="{{ $author->photo === null ? asset('admin-assets/images/faces-clipart/pic-1.png') : asset($author->photo) }}" alt="image">
                                         </td>
                                         <td>{{ $author->fullname }}</td>
                                         <td><a href="mailto:{{ $author->email }}" class="btn btn-sm">{{ $author->email }}</a></td>

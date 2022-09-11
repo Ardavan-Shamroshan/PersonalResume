@@ -26,6 +26,12 @@
                     <div class="card-body">
                         <form class="forms-sample" wire:submit.prevent="edit">
                             <div class="row">
+
+                                <div class="form-group">
+                                    <label for="photo">Image</label>
+                                    <input type="file" class="form-control" id="photo" placeholder="photo" name="authorPhoto" wire:model.lazy="authorPhoto">
+                                </div>
+
                                 <div class="form-group col-6">
                                     <label for="first_name">First name</label>
                                     <input type="text" class="form-control" id="first_name" placeholder="first name" name="first_name" wire:model.lazy="author.first_name">
@@ -59,6 +65,11 @@
                             <div class="form-group col-12">
                                 <label for="study">Study</label>
                                 <input type="text" class="form-control" id="study" placeholder="Study" name="study" wire:model.lazy="author.study">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="about_me">About me</label>
+                                <textarea dir="rtl" class="form-control" id="about_me" placeholder="درمورد من" name="author.about_me" wire:model.lazy="author.about_me" class="w-100" style="min-height: 15rem; line-height:1.2rem"></textarea>
                             </div>
 
                             <div class="row">
@@ -142,6 +153,24 @@
                         <h4 class="card-title">Validated Data</h4>
                         <p class="card-description"> you can preview your data validation here </p>
                         <form class="forms-sample">
+
+
+                            <div class="form-group row position-relative ">
+                                <div wire:loading wire:target="projectImage" wire:key="projectImage" class="position-absolute top-50" style="left:43%">
+                                    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                                </div>
+                                <div class="item">
+                                    @if (!$authorPhoto && $author->photo)
+                                        <img src="{{ asset($author->photo) }}" class="rounded border p-1 w-100" alt="preview.png" height="200">
+                                    @elseif($authorPhoto)
+                                        <img src="{{ $authorPhoto->temporaryUrl() }}" class="rounded border p-1 w-100" alt="preview.png" height="200">
+                                    @else
+                                        <img src="{{ asset('images/built-in/no-preview.png') }}" class="rounded border p-1 w-100" alt="preview.png" height="200">
+                                    @endif
+                                </div>
+                            </div>
+
+
                             <div class="row form-group">
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control border bg-dark @error('author.first_name') border-danger text-danger @else border-success text-success @enderror" value="@error('author.first_name') {{ $message }} @else {{ $author->first_name ?? '' }} @enderror"
@@ -174,6 +203,12 @@
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <input type="text" class="form-control border bg-dark @error('author.study') border-danger text-danger @else border-success text-success @enderror" value="@error('author.study') {{ $message }} @else {{ $author->study ?? '' }} @enderror" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <textarea dir="rtl" class="form-control border bg-dark @error('author.about_me') border-danger text-danger @else border-success text-success @enderror" readonly style="min-height: 15rem; line-height:1.2rem"> @error('author.about_me') {{ $message }} @else {{ $author->about_me ?? '' }} @enderror </textarea>
                                 </div>
                             </div>
 

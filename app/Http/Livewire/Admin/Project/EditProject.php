@@ -41,7 +41,7 @@ class EditProject extends Component
 
     public function updated($project)
     {
-        $data = $this->validateOnly($project);
+        $this->validateOnly($project);
     }
 
     // Submit and save project

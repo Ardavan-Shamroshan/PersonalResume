@@ -32,6 +32,12 @@
                     <div class="card-body">
                         <form class="forms-sample" wire:submit.prevent="submit">
                             <div class="row">
+
+                                <div class="form-group">
+                                    <label for="photo">Image</label>
+                                    <input type="file" class="form-control" id="photo" placeholder="photo" name="authorPhoto" wire:model.lazy="authorPhoto">
+                                </div>
+
                                 <div class="form-group col-6">
                                     <label for="first_name">First name</label>
                                     <input type="text" class="form-control" id="first_name" placeholder="first name" name="first_name" wire:model.lazy="author.first_name">
@@ -185,6 +191,13 @@
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <input type="text" class="form-control border bg-dark @error('author.study') border-danger text-danger @else border-success text-success @enderror" value="@error('author.study') {{ $message }} @else {{ $author->study ?? '' }} @enderror" readonly>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <textarea dir="rtl" class="form-control border bg-dark @error('author.about_me') border-danger text-danger @else border-success text-success @enderror" readonly style="min-height: 15rem; line-height:1.2rem"> @error('author.about_me') {{ $message }} @else {{ $author->about_me ?? '' }} @enderror </textarea>
                                 </div>
                             </div>
 

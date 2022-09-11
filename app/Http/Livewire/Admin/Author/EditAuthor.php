@@ -2,18 +2,24 @@
 
 namespace App\Http\Livewire\Admin\Author;
 
+use Carbon\Carbon;
 use Livewire\Component;
-use App\Models\Author as ModelsAuthor;
 use App\Models\Skill as ModelsSkill;
+use Illuminate\Support\Facades\File;
+use App\Models\Author as ModelsAuthor;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\WithFileUploads;
 
 class EditAuthor extends Component
 {
-    use LivewireAlert;
+    use LivewireAlert, WithFileUploads;
 
     // get the specific author
     public ModelsAuthor $author;
+    // skill property
     public $skill;
+    // author photo property
+    public $authorPhoto;
 
     // listens to this method after confirmation the SweetAlert2  confirm alert
     protected $listeners = [
@@ -52,6 +58,10 @@ class EditAuthor extends Component
         'author.last_name' => ['required', 'string', 'min:2', 'max:150'],
         'author.email' => ['required', 'email'],
         'author.title' => ['required', 'string', 'min:5', 'max:150'],
+
+        'authorPhoto' => ['nullable', 'image'],
+        'author.about_me' => ['required', 'string', 'max:512'],
+
         'author.study' => ['required', 'string', 'min:5', 'max:255'],
         'author.mobile' => ['required', 'digits:11'],
         'author.city' => ['required', 'string', 'min:2', 'max:55'],
@@ -100,7 +110,25 @@ class EditAuthor extends Component
         }
 
 
-        // creaate author
+         // if new photo defined for author
+         if ($this->authorPhoto) {
+            // photo upload
+            // set name for photo to upload - current timestamp.photo extension (1662656825.jpg)
+            $authorPhotoName = Carbon::now()->timestamp . '.' . $this->authorPhoto->extension();
+            // set photo address in data['photo'] field to save in database
+            $validatedAuthorData['photo'] = "images/author/$authorPhotoName";
+
+            // photo store method now save files into public_path() because config.filesystems.php : 'root' => public_path('photos')  has changed
+            // save photo to public/photos/author with the modified name
+            $this->authorPhoto->storeAs('author', $authorPhotoName);
+
+            // delete previous photo from directory
+            if (File::exists($this->author->photo))
+                File::delete($this->author->photo);
+        }
+
+
+        // create author
         $this->author->update($validatedAuthorData);
 
         $this->alert('success', 'author edited successfully');
@@ -112,8 +140,8 @@ class EditAuthor extends Component
     { // validated author data
         $validatedAuthorData = $this->validate()['author'];
 
-         // check if there is any new skill
-         if (array_key_exists('skill', $this->validate())) {
+        // check if there is any new skill
+        if (array_key_exists('skill', $this->validate())) {
             // validated skill data
             $validatedSkillData = $this->validate()['skill'];
 
@@ -132,7 +160,26 @@ class EditAuthor extends Component
             }
         }
 
-        // creaate author
+
+         // if new photo defined for author
+         if ($this->authorPhoto) {
+            // photo upload
+            // set name for photo to upload - current timestamp.photo extension (1662656825.jpg)
+            $authorPhotoName = Carbon::now()->timestamp . '.' . $this->authorPhoto->extension();
+            // set photo address in data['photo'] field to save in database
+            $validatedAuthorData['photo'] = "images/author/$authorPhotoName";
+
+            // photo store method now save files into public_path() because config.filesystems.php : 'root' => public_path('photos')  has changed
+            // save photo to public/photos/author with the modified name
+            $this->authorPhoto->storeAs('author', $authorPhotoName);
+
+            // delete previous photo from directory
+            if (File::exists($this->author->photo))
+                File::delete($this->author->photo);
+        }
+
+
+        // update author
         $this->author->update($validatedAuthorData);
 
         $this->alert('success', 'author edited successfully');
@@ -144,8 +191,8 @@ class EditAuthor extends Component
     {
         // validated author data
         $validatedAuthorData = $this->validate()['author'];
-         // check if there is any new skill
-         if (array_key_exists('skill', $this->validate())) {
+        // check if there is any new skill
+        if (array_key_exists('skill', $this->validate())) {
             // validated skill data
             $validatedSkillData = $this->validate()['skill'];
 
@@ -163,7 +210,27 @@ class EditAuthor extends Component
                 ]);
             }
         }
-        // creaate author
+
+
+         // if new photo defined for author
+         if ($this->authorPhoto) {
+            // photo upload
+            // set name for photo to upload - current timestamp.photo extension (1662656825.jpg)
+            $authorPhotoName = Carbon::now()->timestamp . '.' . $this->authorPhoto->extension();
+            // set photo address in data['photo'] field to save in database
+            $validatedAuthorData['photo'] = "images/author/$authorPhotoName";
+
+            // photo store method now save files into public_path() because config.filesystems.php : 'root' => public_path('photos')  has changed
+            // save photo to public/photos/author with the modified name
+            $this->authorPhoto->storeAs('author', $authorPhotoName);
+
+            // delete previous photo from directory
+            if (File::exists($this->author->photo))
+                File::delete($this->author->photo);
+        }
+
+
+        // update author
         $this->author->update($validatedAuthorData);
 
         $this->alert('success', 'author created successfully');
@@ -195,7 +262,6 @@ class EditAuthor extends Component
     {
         return redirect()->route('admin.author');
     }
-
 
     public function render()
     {

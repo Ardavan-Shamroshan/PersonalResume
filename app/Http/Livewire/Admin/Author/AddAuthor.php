@@ -2,16 +2,19 @@
 
 namespace App\Http\Livewire\Admin\Author;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\Skill as ModelsSkill;
+use Illuminate\Support\Facades\File;
 use App\Models\Author as ModelsAuthor;
 use App\Models\Category as ModelsCategory;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\WithFileUploads;
 
 class AddAuthor extends Component
 {
-    use LivewireAlert;
+    use LivewireAlert, WithFileUploads;
 
     public $author;
     public $skill;
@@ -93,7 +96,22 @@ class AddAuthor extends Component
         $skillsStatus = $validatedSkillData['status']; // skill status data
 
         DB::transaction(function () use ($validatedAuthorData, $skillsTitle, $skillsLevel, $skillsStatus) {
-            // creaate author
+            // photo upload
+            // set name for photo to upload - current timestamp.photo extension (1662656825.jpg)
+            $authorPhotoName = Carbon::now()->timestamp . '.' . $this->authorPhoto->extension();
+            // set photo address in data['photo'] field to save in database
+            $validatedAuthorData['photo'] = "images/author/$authorPhotoName";
+
+            // photo store method now save files into public_path() because config.filesystems.php : 'root' => public_path('photos')  has changed
+            // save photo to public/photos/author with the modified name
+            $this->authorPhoto->storeAs('author', $authorPhotoName);
+
+            // delete previous photo from directory
+            if (File::exists($this->author->photo))
+                File::delete($this->author->photo);
+
+
+            // update author
             $author = ModelsAuthor::query()->create($validatedAuthorData);
 
             // create skill
@@ -126,7 +144,7 @@ class AddAuthor extends Component
         $skillsLevel = $validatedSkillData['level']; // skill level data
         $skillsStatus = $validatedSkillData['status']; // skill status data
         DB::transaction(function () use ($validatedAuthorData, $skillsTitle, $skillsLevel, $skillsStatus) {
-            // creaate author
+            // update author
             $author = ModelsAuthor::query()->create($validatedAuthorData);
 
             // create skill
@@ -157,7 +175,7 @@ class AddAuthor extends Component
         $skillsStatus = $validatedSkillData['status']; // skill status data
 
         DB::transaction(function () use ($validatedAuthorData, $skillsTitle, $skillsLevel, $skillsStatus) {
-            // creaate author
+            // update author
             $author = ModelsAuthor::query()->create($validatedAuthorData);
 
             // create skill
