@@ -13,17 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
 
-Route::middleware(['auth','verified', 'admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', App\Http\Livewire\Admin\AdminDashboard::class)->name('admin.dashboard');
     Route::prefix('user')->group(function () {
         Route::get('/', App\Http\Livewire\Admin\User\User::class)->name('admin.user');
@@ -35,15 +31,15 @@ Route::middleware(['auth','verified', 'admin'])->prefix('admin')->group(function
         Route::get('/add-author', App\Http\Livewire\Admin\Author\AddAuthor::class)->name('admin.author.add-author');
         Route::get('/edit-author/{author}', App\Http\Livewire\Admin\Author\EditAuthor::class)->name('admin.author.edit-author');
     });
-     Route::prefix('category')->group(function () {
+    Route::prefix('category')->group(function () {
         Route::get('/', App\Http\Livewire\Admin\Category\Category::class)->name('admin.category');
         Route::get('/add-category', App\Http\Livewire\Admin\Category\AddCategory::class)->name('admin.category.add-category');
         Route::get('/edit-category/{category}', App\Http\Livewire\Admin\Category\EditCategory::class)->name('admin.category.edit-category');
     });
     Route::prefix('skill')->group(function () {
         Route::get('/', App\Http\Livewire\Admin\Skill\Skill::class)->name('admin.skill');
-    //     Route::get('/add-category', App\Http\Livewire\Admin\Category\AddCategory::class)->name('admin.category.add-category');
-    //     Route::get('/edit-category/{category}', App\Http\Livewire\Admin\Category\EditCategory::class)->name('admin.category.edit-category');
+        //     Route::get('/add-category', App\Http\Livewire\Admin\Category\AddCategory::class)->name('admin.category.add-category');
+        //     Route::get('/edit-category/{category}', App\Http\Livewire\Admin\Category\EditCategory::class)->name('admin.category.edit-category');
     });
     Route::prefix('experience')->group(function () {
         Route::get('/', App\Http\Livewire\Admin\Experience\Experience::class)->name('admin.experience');
@@ -64,3 +60,5 @@ Route::middleware(['auth','verified', 'admin'])->prefix('admin')->group(function
 
     Route::get('/setting', App\Http\Livewire\Admin\Setting\Setting::class)->name('admin.setting');
 });
+
+Route::get('/', \App\Http\Livewire\Home\Index::class)->name('home');

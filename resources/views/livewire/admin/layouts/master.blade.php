@@ -25,12 +25,8 @@
     </div>
 
 
-    <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{ asset('admin-assets/vendors/js/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-
-
     <!-- inject:js -->
     <script src="{{ asset('admin-assets/js/off-canvas.js') }}"></script>
     <script src="{{ asset('admin-assets/js/hoverable-collapse.js') }}"></script>
@@ -40,9 +36,7 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="{{ asset('admin-assets/js/dashboard.js') }}"></script>
-
     @stack('scripts')
-
     @livewireScripts
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <x-livewire-alert::scripts />
