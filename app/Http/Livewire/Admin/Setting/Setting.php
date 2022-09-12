@@ -61,11 +61,11 @@ class Setting extends Component
         // update setting
         $this->setting->update($data);
         $this->alert('success', 'Setting updated successfully');
+        return redirect()->route('admin.setting');
     }
 
     public function render()
     {
-       ;
         return view('livewire.admin.setting.setting')
             ->layout('livewire.admin.layouts.master');
     }

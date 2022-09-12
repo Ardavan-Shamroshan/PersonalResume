@@ -35,7 +35,7 @@ class EditPost extends Component
         'post.category_id' => ['required', 'exists:categories,id'],
         // 'post.summary' => ['required', 'string', 'max:120'],
         'post.body' => ['required', 'string'],
-        'postImage' => ['required', 'image'],
+        'postImage' => ['nullable', 'image'],
         'post.status' => ['required'],
     ];
 

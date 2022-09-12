@@ -22,7 +22,7 @@ class EditExperience extends Component
         'experience.title' => ['required', 'string'],
         'experience.author_id' => ['required', 'exists:authors,id'],
         'experience.description' => ['required', 'string', 'max:120'],
-        'experience.date' => ['required', 'string', 'max:15'],
+        'experience.date' => ['required', 'string', 'max:45'],
         'experience.status' => ['required'],
     ];
 

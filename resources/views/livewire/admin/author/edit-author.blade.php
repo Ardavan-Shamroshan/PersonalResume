@@ -156,7 +156,7 @@
 
 
                             <div class="form-group row position-relative ">
-                                <div wire:loading wire:target="projectImage" wire:key="projectImage" class="position-absolute top-50" style="left:43%">
+                                <div wire:loading wire:target="authorPhoto" wire:key="authorPhoto" class="position-absolute top-50" style="left:43%">
                                     <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
                                 </div>
                                 <div class="item">

@@ -19,6 +19,8 @@ class AddAuthor extends Component
     public $author;
     public $skill;
     public $categories;
+     // author photo property
+     public $authorPhoto;
 
     // properties needed for extra inputs
     public $inputs = []; // extra inputs saves here
@@ -56,22 +58,23 @@ class AddAuthor extends Component
         'author.last_name' => ['required', 'string', 'min:2', 'max:150'],
         'author.email' => ['required', 'email'],
         'author.title' => ['required', 'string', 'min:5', 'max:150'],
+
+        'authorPhoto' => ['nullable', 'image'],
+        'author.about_me' => ['required', 'string', 'max:512'],
+
         'author.study' => ['required', 'string', 'min:5', 'max:255'],
         'author.mobile' => ['required', 'digits:11'],
         'author.city' => ['required', 'string', 'min:2', 'max:55'],
         'author.birth_date' => ['required', 'digits:4'],
         'author.status' => ['required'],
 
-        'skill.title.0' => ['required'],
-        'skill.level.0' => ['required'],
-        'skill.status.0' => ['required'],
-        // 'skill.category_id.0' => ['required'],
-
+        'skill.title.0' => ['nullable'],
+        'skill.level.0' => ['nullable'],
+        'skill.status.0' => ['nullable'],
         // multi skill inputs validation
-        'skill.title.*' => 'required',
-        'skill.level.*' => 'required',
-        'skill.status.*' => 'required',
-        // 'skill.category_id.*' => 'required',
+        'skill.title.*' => 'nullable',
+        'skill.level.*' => 'nullable',
+        'skill.status.*' => 'nullable',
 
     ];
 

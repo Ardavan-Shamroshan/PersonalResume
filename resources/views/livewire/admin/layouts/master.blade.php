@@ -12,6 +12,10 @@
 <link rel="stylesheet" href="{{ asset('admin-assets/css/style.css') }}">
 <!-- End layout styles -->
 <link rel="shortcut icon" href="{{ asset('admin-assets/images/favicon.png') }}" />
+@if ($setting)
+<link rel="icon" href="{{ asset($setting->logo) }}">
+@endif
+
 @livewireStyles
 </head>
 

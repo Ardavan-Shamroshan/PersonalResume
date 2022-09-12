@@ -33,5 +33,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('endadmin', function() {
             return "<?php endif; ?>";
         });
+
+        View::composer(['livewire.home.layouts.master', 'livewire.home.layouts.head-tag', 'livewire.admin.layouts.master'], function($view) {
+            $view->with('setting', Setting::first());
+        });
     }
 }

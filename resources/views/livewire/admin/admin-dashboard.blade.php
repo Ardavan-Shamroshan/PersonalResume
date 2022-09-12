@@ -13,8 +13,11 @@
                                 <div class="d-flex d-sm-block d-md-flex align-items-center">
                                     <h2 class="mb-0">{{ $posts->count() }}</h2>
                                 </div>
-                                <h6 class="text-muted font-weight-normal" dir="rtl"> {{ $latestPost->created_at->diffForHumans() }} <p>از آخرین مقاله </p>
-                                </h6>
+                                @if ($latestPost)
+                                    <h6 class="text-muted font-weight-normal" dir="rtl"> {{ $latestPost->created_at->diffForHumans() }} <p>از آخرین مقاله </p>
+                                    </h6>
+                                @endif
+
                             </div>
                             <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                                 <i class="icon-lg mdi mdi-codepen text-primary ms-auto"></i>
@@ -32,8 +35,10 @@
                                 <div class="d-flex d-sm-block d-md-flex align-items-center">
                                     <h2 class="mb-0">{{ $categories->count() }}</h2>
                                 </div>
-                                <h6 class="text-muted font-weight-normal" dir="rtl"> {{ $latestCategory->created_at->diffForHumans() }} <p>از آخرین دسته بندی </p>
-                                </h6>
+                                @if ($latestCategory)
+                                    <h6 class="text-muted font-weight-normal" dir="rtl"> {{ $latestCategory->created_at->diffForHumans() }} <p>از آخرین دسته بندی </p>
+                                    </h6>
+                                @endif
                             </div>
                             <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                                 <i class="icon-lg mdi mdi-wallet-travel text-danger ms-auto"></i>
@@ -51,8 +56,10 @@
                                 <div class="d-flex d-sm-block d-md-flex align-items-center">
                                     <h2 class="mb-0">{{ $projects->count() }}</h2>
                                 </div>
-                                <h6 class="text-muted font-weight-normal" dir="rtl"> {{ $latestProject->created_at->diffForHumans() }} <p>از آخرین پروژه </p>
-                                </h6>
+                                @if ($latestProject)
+                                    <h6 class="text-muted font-weight-normal" dir="rtl"> {{ $latestProject->created_at->diffForHumans() }} <p>از آخرین پروژه </p>
+                                    </h6>
+                                @endif
                             </div>
                             <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                                 <i class="icon-lg mdi mdi-monitor text-success ms-auto"></i>
@@ -107,108 +114,108 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="preview-list">
-
-
-                                    @if ($projects[0])
-                                        <div class="preview-item border-bottom">
-                                            <div class="preview-thumbnail">
-                                                <div class="preview-icon bg-primary">
-                                                    <i class="mdi mdi-file-document"></i>
+                                    @if ($projects->isNotEmpty())
+                                        @if ($projects[0])
+                                            <div class="preview-item border-bottom">
+                                                <div class="preview-thumbnail">
+                                                    <div class="preview-icon bg-primary">
+                                                        <i class="mdi mdi-file-document"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="preview-item-content d-sm-flex flex-grow">
+                                                    <div class="flex-grow">
+                                                        <h6 class="preview-subject">{{ $projects[0]->title }}</h6>
+                                                        <a href="{{ $projects[0]->link }}" class="text-muted mb-0">{{ $projects[0]->link }}</a>
+                                                    </div>
+                                                    <div class="me-auto text-sm-right pt-2 pt-sm-0">
+                                                        <p class="text-muted">{{ $projects[0]->created_at->diffForHumans() }}</p>
+                                                        <p class="text-muted mb-0">{{ $projects[0]->projectStatus }} </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="preview-item-content d-sm-flex flex-grow">
-                                                <div class="flex-grow">
-                                                    <h6 class="preview-subject">{{ $projects[0]->title }}</h6>
-                                                    <a href="{{ $projects[0]->link }}" class="text-muted mb-0">{{ $projects[0]->link }}</a>
+                                        @endif
+
+                                        @if (array_key_exists(1, $projects->toArray()))
+                                            <div class="preview-item border-bottom">
+                                                <div class="preview-thumbnail">
+                                                    <div class="preview-icon bg-success">
+                                                        <i class="mdi mdi-cloud-download"></i>
+                                                    </div>
                                                 </div>
-                                                <div class="me-auto text-sm-right pt-2 pt-sm-0">
-                                                    <p class="text-muted">{{ $projects[0]->created_at->diffForHumans() }}</p>
-                                                    <p class="text-muted mb-0">{{ $projects[0]->projectStatus }} </p>
+                                                <div class="preview-item-content d-sm-flex flex-grow">
+                                                    <div class="flex-grow">
+                                                        <h6 class="preview-subject">{{ $projects[1]->title }}</h6>
+                                                        <a href="{{ $projects[1]->link }}" class="text-muted mb-0">{{ $projects[1]->link }}</a>
+                                                    </div>
+                                                    <div class="me-auto text-sm-right pt-2 pt-sm-0">
+                                                        <p class="text-muted">{{ $projects[1]->created_at->diffForHumans() }}</p>
+                                                        <p class="text-muted mb-0">{{ $projects[1]->projectStatus }} </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
+                                        @if (array_key_exists(2, $projects->toArray()))
+                                            <div class="preview-item border-bottom">
+                                                <div class="preview-thumbnail">
+                                                    <div class="preview-icon bg-info">
+                                                        <i class="mdi mdi-clock"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="preview-item-content d-sm-flex flex-grow">
+                                                    <div class="flex-grow">
+                                                        <h6 class="preview-subject">{{ $projects[2]->title }}</h6>
+                                                        <a href="{{ $projects[2]->link }}" class="text-muted mb-0">{{ $projects[2]->link }}</a>
+                                                    </div>
+                                                    <div class="me-auto text-sm-right pt-2 pt-sm-0">
+                                                        <p class="text-muted">{{ $projects[2]->created_at->diffForHumans() }}</p>
+                                                        <p class="text-muted mb-0">{{ $projects[2]->projectStatus }} </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+
+
+                                        @if (array_key_exists(3, $projects->toArray()))
+                                            <div class="preview-item border-bottom">
+                                                <div class="preview-thumbnail">
+                                                    <div class="preview-icon bg-danger">
+                                                        <i class="mdi mdi-email-open"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="preview-item-content d-sm-flex flex-grow">
+                                                    <div class="flex-grow">
+                                                        <h6 class="preview-subject">{{ $projects[3]->title }}</h6>
+                                                        <a href="{{ $projects[3]->link }}" class="text-muted mb-0">{{ $projects[3]->link }}</a>
+                                                    </div>
+                                                    <div class="me-auto text-sm-right pt-2 pt-sm-0">
+                                                        <p class="text-muted">{{ $projects[3]->created_at->diffForHumans() }}</p>
+                                                        <p class="text-muted mb-0">{{ $projects[3]->projectStatus }} </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+
+                                        @if (array_key_exists(4, $projects->toArray()))
+                                            <div class="preview-item border-bottom">
+                                                <div class="preview-thumbnail">
+                                                    <div class="preview-icon bg-warning">
+                                                        <i class="mdi mdi-chart-pie"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="preview-item-content d-sm-flex flex-grow">
+                                                    <div class="flex-grow">
+                                                        <h6 class="preview-subject">{{ $projects[4]->title }}</h6>
+                                                        <a href="{{ $projects[4]->link }}" class="text-muted mb-0">{{ $projects[4]->link }}</a>
+                                                    </div>
+                                                    <div class="me-auto text-sm-right pt-2 pt-sm-0">
+                                                        <p class="text-muted">{{ $projects[4]->created_at->diffForHumans() }}</p>
+                                                        <p class="text-muted mb-0">{{ $projects[4]->projectStatus }} </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+
                                     @endif
-
-                                    @if (array_key_exists(1, $projects->toArray()))
-                                        <div class="preview-item border-bottom">
-                                            <div class="preview-thumbnail">
-                                                <div class="preview-icon bg-success">
-                                                    <i class="mdi mdi-cloud-download"></i>
-                                                </div>
-                                            </div>
-                                            <div class="preview-item-content d-sm-flex flex-grow">
-                                                <div class="flex-grow">
-                                                    <h6 class="preview-subject">{{ $projects[1]->title }}</h6>
-                                                    <a href="{{ $projects[1]->link }}" class="text-muted mb-0">{{ $projects[1]->link }}</a>
-                                                </div>
-                                                <div class="me-auto text-sm-right pt-2 pt-sm-0">
-                                                    <p class="text-muted">{{ $projects[1]->created_at->diffForHumans() }}</p>
-                                                    <p class="text-muted mb-0">{{ $projects[1]->projectStatus }} </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                    @if (array_key_exists(2, $projects->toArray()))
-                                        <div class="preview-item border-bottom">
-                                            <div class="preview-thumbnail">
-                                                <div class="preview-icon bg-info">
-                                                    <i class="mdi mdi-clock"></i>
-                                                </div>
-                                            </div>
-                                            <div class="preview-item-content d-sm-flex flex-grow">
-                                                <div class="flex-grow">
-                                                    <h6 class="preview-subject">{{ $projects[2]->title }}</h6>
-                                                    <a href="{{ $projects[2]->link }}" class="text-muted mb-0">{{ $projects[2]->link }}</a>
-                                                </div>
-                                                <div class="me-auto text-sm-right pt-2 pt-sm-0">
-                                                    <p class="text-muted">{{ $projects[2]->created_at->diffForHumans() }}</p>
-                                                    <p class="text-muted mb-0">{{ $projects[2]->projectStatus }} </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-
-
-                                    @if (array_key_exists(3, $projects->toArray()))
-                                        <div class="preview-item border-bottom">
-                                            <div class="preview-thumbnail">
-                                                <div class="preview-icon bg-danger">
-                                                    <i class="mdi mdi-email-open"></i>
-                                                </div>
-                                            </div>
-                                            <div class="preview-item-content d-sm-flex flex-grow">
-                                                <div class="flex-grow">
-                                                    <h6 class="preview-subject">{{ $projects[3]->title }}</h6>
-                                                    <a href="{{ $projects[3]->link }}" class="text-muted mb-0">{{ $projects[3]->link }}</a>
-                                                </div>
-                                                <div class="me-auto text-sm-right pt-2 pt-sm-0">
-                                                    <p class="text-muted">{{ $projects[3]->created_at->diffForHumans() }}</p>
-                                                    <p class="text-muted mb-0">{{ $projects[3]->projectStatus }} </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-
-                                    @if (array_key_exists(4, $projects->toArray()))
-                                        <div class="preview-item border-bottom">
-                                            <div class="preview-thumbnail">
-                                                <div class="preview-icon bg-warning">
-                                                    <i class="mdi mdi-chart-pie"></i>
-                                                </div>
-                                            </div>
-                                            <div class="preview-item-content d-sm-flex flex-grow">
-                                                <div class="flex-grow">
-                                                    <h6 class="preview-subject">{{ $projects[4]->title }}</h6>
-                                                    <a href="{{ $projects[4]->link }}" class="text-muted mb-0">{{ $projects[4]->link }}</a>
-                                                </div>
-                                                <div class="me-auto text-sm-right pt-2 pt-sm-0">
-                                                    <p class="text-muted">{{ $projects[4]->created_at->diffForHumans() }}</p>
-                                                    <p class="text-muted mb-0">{{ $projects[4]->projectStatus }} </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-
 
 
 
@@ -260,7 +267,10 @@
                                 </div>
                             </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal">{{ $latestAuthor->fullname }}</h6>
+                        @if ($latestAuthor)
+                            <h6 class="text-muted font-weight-normal">{{ $latestAuthor->fullname }}</h6>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -280,7 +290,9 @@
                                 </div>
                             </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal">{{ $latestExperience->author->fullname }}</h6>
+                        @if ($latestAuthor)
+                            <h6 class="text-muted font-weight-normal">{{ $latestExperience->author->fullname }}</h6>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -301,7 +313,9 @@
                                 </div>
                             </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal">{{ $latestSkill->author->fullname }}</h6>
+                        @if ($latestSkill)
+                            <h6 class="text-muted font-weight-normal">{{ $latestSkill->author->fullname }}</h6>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -312,7 +326,11 @@
     <!-- partial:partials/_footer.html -->
     <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © {{ $setting->copy_right}}</span>
+            @if ($setting)
+
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © {{ $setting->copy_right }}</span>
+            @endif
+      
         </div>
     </footer>
     <!-- partial -->

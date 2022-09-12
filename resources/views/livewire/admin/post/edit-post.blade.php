@@ -37,7 +37,7 @@
                                 <select class="form-control" id="select2-dropdown">
                                     <option>مولف مورد نظر را انتخاب کنید</option>
                                     @foreach ($authors as $author)
-                                        <option value="{{ $author->id }}">{{ $author->fullname }}</option>
+                                        <option value="{{ $author->id }}" @selected($author->id == $post->author_id)>{{ $author->fullname }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -47,7 +47,7 @@
                                 <select class="form-control" id="select2-dropdown-2">
                                     <option>دسته بندی مورد نظر را انتخاب کنید</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                        <option value="{{ $category->id }}" @selected($category->id == $post->category_id)>{{ $category->title }}</option>
                                     @endforeach
                                 </select>
                             </div>

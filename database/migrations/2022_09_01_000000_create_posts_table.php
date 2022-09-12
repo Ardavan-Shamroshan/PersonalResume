@@ -14,7 +14,7 @@ class CreatePostsTable extends Migration
     {
         // Create table for storing roles
         Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->foreignId('author_id')->constrained('authors')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
@@ -22,7 +22,6 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->string('image')->nullable();
             $table->string('slug')->unique();
-            $table->integer('likes')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
