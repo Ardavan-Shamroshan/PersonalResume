@@ -18,10 +18,18 @@ class Post extends Component
     public function like(ModelsPost $post)
     {
         $clientIPAddress = request()->ip();
-        ModelsLike::query()->create([
-            'ip_address' => $clientIPAddress,
-            'post_id' => $post->id,
-        ]);
+        $liked = $post->likes()->where('ip_address', $clientIPAddress)->first();
+        if ($liked) {
+            $liked->update([
+                'likes' => 1,
+            ]);
+            return redirect()->route('home');
+        } else
+            ModelsLike::query()->create([
+                'ip_address' => $clientIPAddress,
+                'post_id' => $post->id,
+                'likes' => 1,
+            ]);
         return redirect()->route('home');
     }
 
@@ -29,7 +37,9 @@ class Post extends Component
     {
         $clientIPAddress = request()->ip();
         $liked = $post->likes()->where('ip_address', $clientIPAddress)->first();
-        $liked->delete();
+        $liked->update([
+            'likes' => 0,
+        ]);
         return redirect()->route('home');
     }
 

@@ -37,10 +37,11 @@
                                         <p class="date">توسط <a href="#">{{ $author->fullname }}</a> <span>{{ $post->created_at->diffForHumans() }}</span></p>
                                     </div>
                                     <div class="my_like">
-                                        @if ($post->likes()->where('ip_address', $clientIPAddress)->get()->isEmpty())
-                                            <a href="#" wire:click="like({{ $post }})"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt="" /><span>{{ $post->likes->count() }}</span></a>
+                                        @if ($post->likes()->where([['ip_address', $clientIPAddress], ['likes' , 1]])->get()->isEmpty())
+                                            <a href="#" wire:click="like({{ $post }})"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt="" /><span>{{ $post->likes()->where('likes', 1)->get()->count() }}</span></a>
                                         @else
-                                            <a href="#" wire:click="disLike({{ $post }})"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt="" style="filter: invert(28%) sepia(75%) saturate(2390%) hue-rotate(0deg) brightness(118%) contrast(119%);" /><span>{{ $post->likes->count() }}</span></a>
+                                            <a href="#" wire:click="disLike({{ $post }})"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt=""
+                                                    style="filter: invert(28%) sepia(75%) saturate(2390%) hue-rotate(0deg) brightness(118%) contrast(119%);" /><span>{{ $post->likes()->where('likes', 1)->get()->count() }}</span></a>
                                         @endif
 
                                     </div>
