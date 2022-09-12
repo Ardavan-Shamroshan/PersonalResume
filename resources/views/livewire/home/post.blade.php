@@ -37,7 +37,12 @@
                                         <p class="date">توسط <a href="#">{{ $author->fullname }}</a> <span>{{ $post->created_at->diffForHumans() }}</span></p>
                                     </div>
                                     <div class="my_like">
-                                        <a href="#" wire:click="like"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt="" /><span>{{ $post->likes ?? 0 }}</span></a>
+                                        @if ($post->likes()->where('ip_address', $clientIPAddress)->get()->isEmpty())
+                                            <a href="#" wire:click="like({{ $post }})"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt="" /><span>{{ $post->likes->count() }}</span></a>
+                                        @else
+                                            <a href="#" wire:click="disLike({{ $post }})"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt="" style="filter: invert(28%) sepia(75%) saturate(2390%) hue-rotate(0deg) brightness(118%) contrast(119%);" /><span>{{ $post->likes->count() }}</span></a>
+                                        @endif
+
                                     </div>
                                 </div>
                                 <h3 class="title"><a href="#">{{ $post->title }}</a></h3>

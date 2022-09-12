@@ -1,8 +1,8 @@
 @charset "utf-8";
 @font-face {
     font-family: Vazir;
-    src: url('../../fonts/vazir/Vazir.eot');
-    src: url('../../fonts/vazir/Vazir.eot?#iefix') format('Vazir-opentype'), url('../../fonts/vazir/Vazir.woff') format('woff'), url('../../fonts/vazir/Vazir.ttf') format('truetype');
+    src: url("../../fonts/vazir/Vazir.eot");
+    src: url("../../fonts/vazir/Vazir.eot?#iefix") format("Vazir-opentype"), url("../../fonts/vazir/Vazir.woff") format("woff"), url("../../fonts/vazir/Vazir.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
@@ -294,6 +294,9 @@ h6 {
 .tokyo_tm_mobile_menu .menu ul li .svg {
     width: 16px;
     height: 16px;
+    background-color: #7171713d;
+    border-radius: 100%;
+    padding: 5px;
 }
 
 .tokyo_tm_all_wrap .leftpart {
@@ -718,6 +721,9 @@ h6 {
 }
 
 .tokyo_tm_modalbox_about .close .svg {
+    background-color: #7171713d;
+    border-radius: 100%;
+    padding: 5px;
     width: 50px;
     height: 50px;
 }
@@ -1659,10 +1665,12 @@ h6 {
 
 .tokyo_tm_modalbox .close a {
     text-decoration: none;
-    color: #fff;
 }
 
 .tokyo_tm_modalbox .close .svg {
+    background-color: #7171713d;
+    border-radius: 100%;
+    padding: 5px;
     width: 50px;
     height: 50px;
 }
@@ -2261,6 +2269,9 @@ body.modal {
         margin-left: 5px;
     }
     .tokyo_tm_modalbox .close .svg {
+        background-color: #7171713d;
+        border-radius: 100%;
+        padding: 5px;
         width: 25px;
         height: 25px;
     }
@@ -2291,6 +2302,9 @@ body.modal {
         top: -35px;
     }
     .tokyo_tm_modalbox_about .close .svg {
+        background-color: #7171713d;
+        border-radius: 100%;
+        padding: 5px;
         width: 25px;
         height: 25px;
     }
@@ -2407,4 +2421,9 @@ body.modal {
 
 .vazir {
     font-family: Vazir !important;
+}
+
+.textbox {
+    text-align: justify;
+    margin-left: 30px;
 }
