@@ -12,7 +12,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('home-assets/css/colors.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('home-assets/css/style.css') }}" />
     <link rel="icon" href="{{ asset($setting->logo) }}">
-    
+
+    <script src="{{ asset('js/app.js') }}"></script>
+
      <!-- IMPORTANT!!! remember CSRF token -->
      <meta name="csrf-token" content="{{ csrf_token() }}">
     {!! htmlScriptTagJsApi() !!}
