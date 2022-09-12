@@ -15,8 +15,9 @@ class Post extends Component
         $this->author = $author;
     }
 
-    public function like(ModelsPost $post)
+    public function like($id)
     {
+        $post = ModelsPost::find($id);
         $clientIPAddress = request()->ip();
         $liked = $post->likes()->where('ip_address', $clientIPAddress)->first();
         if ($liked) {
@@ -33,8 +34,9 @@ class Post extends Component
         return redirect()->route('home');
     }
 
-    public function disLike(ModelsPost $post)
+    public function disLike($id)
     {
+        $post = ModelsPost::find($id);
         $clientIPAddress = request()->ip();
         $liked = $post->likes()->where('ip_address', $clientIPAddress)->first();
         $liked->update([

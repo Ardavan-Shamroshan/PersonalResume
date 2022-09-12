@@ -16,7 +16,7 @@
         <div class="description_wrap">
             <div class="my_box">
                 <div class="left" style="width:100%">
-                    <div class="about_title">
+                    <div class="about_title" dir="rtl">
                         <h3>مهارت ها و تخصص های من</h3>
                     </div>
                     <div class="tokyo_progress">
@@ -54,21 +54,7 @@
 
                 </ul>
             </div>
-            <div class="partners">
-                <div class="about_title">
-                    <h3>Our Partners</h3>
-                </div>
-                <ul class="owl-carousel">
-                    <li class="item"><a href="#"><img src="{{ asset('home-assets/img/partners/1.png') }}" alt="" /></a></li>
-                    <li class="item"><a href="#"><img src="{{ asset('home-assets/img/partners/2.png') }}" alt="" /></a></li>
-                    <li class="item"><a href="#"><img src="{{ asset('home-assets/img/partners/3.png') }}" alt="" /></a></li>
-                    <li class="item"><a href="#"><img src="{{ asset('home-assets/img/partners/4.png') }}" alt="" /></a></li>
-                    <li class="item"><a href="#"><img src="{{ asset('home-assets/img/partners/5.png') }}" alt="" /></a></li>
-                    <li class="item"><a href="#"><img src="{{ asset('home-assets/img/partners/6.png') }}" alt="" /></a></li>
-                    <li class="item"><a href="#"><img src="{{ asset('home-assets/img/partners/7.png') }}" alt="" /></a></li>
-                    <li class="item"><a href="#"><img src="{{ asset('home-assets/img/partners/8.png') }}" alt="" /></a></li>
-                </ul>
-            </div>
+
         </div>
     </div>
 </div>

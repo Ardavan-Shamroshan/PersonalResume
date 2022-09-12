@@ -15,11 +15,13 @@
                             <p class="job">{{ $author->about_me }}</p>
                             <div class="social">
                                 <ul>
-                                    <li><a href="#"><img class="svg" src="{{ asset('home-assets/img/svg/social/facebook.svg') }}" alt="" /></a></li>
-                                    <li><a href="#"><img class="svg" src="{{ asset('home-assets/img/svg/social/twitter.svg') }}" alt="" /></a></li>
-                                    <li><a href="#"><img class="svg" src="{{ asset('home-assets/img/svg/social/instagram.svg') }}" alt="" /></a></li>
-                                    <li><a href="#"><img class="svg" src="{{ asset('home-assets/img/svg/social/dribbble.svg') }}" alt="" /></a></li>
-                                    <li><a href="#"><img class="svg" src="{{ asset('home-assets/img/svg/social/tik-tok.svg') }}" alt="" /></a></li>
+                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ route('home') }}&quote=اردوان20%شام20%روشن"><img class="svg" src="{{ asset('home-assets/img/svg/social/facebook.svg') }}" alt="" /></a></li>
+                                    <li><a href="https://twitter.com/intent/tweet?text=اردوان20%شام20%روشن!&url={{ route('home') }}"><img class="svg" src="{{ asset('home-assets/img/svg/social/twitter.svg') }}" alt="" /></a></li>
+                                    <li><a href="http://instagram.com/sharer.php?u={{ route('home') }}"><img class="svg" src="{{ asset('home-assets/img/svg/social/instagram.svg') }}" alt="" /></a></li>
+                                    <li><a href="https://wa.me/?text=اردوان20%شام20%روشن%5Cn%20{{ route('home') }}"><img class="svg" src="{{ asset('home-assets/img/svg/social/whatsapp.svg') }}" alt="" /></a></li>
+                                    <li><a href="https://t.me/share/url?url={{ route('home') }}&text=اردوان20%شام20%روشن"><img class="svg" src="{{ asset('home-assets/img/svg/social/telegram.svg') }}" alt="" /></a></li>
+                                    <li><a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('home') }}"><img class="svg" src="{{ asset('home-assets/img/svg/social/linkedin.svg') }}" alt="" /></a></li>
+
                                 </ul>
                             </div>
                         </div>
