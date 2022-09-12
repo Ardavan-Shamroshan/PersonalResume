@@ -12,6 +12,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('home-assets/css/colors.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('home-assets/css/style.css') }}" />
     <link rel="icon" href="{{ asset($setting->logo) }}">
+    
+     <!-- IMPORTANT!!! remember CSRF token -->
+     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {!! htmlScriptTagJsApi() !!}
     @stack('head-tag')
     @livewireStyles
 </head>
