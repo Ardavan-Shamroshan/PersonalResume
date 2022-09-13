@@ -62,3 +62,4 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->group(functio
 });
 
 Route::get('/', \App\Http\Livewire\Home\Index::class)->name('home');
+Route::post('/contact', [\App\Http\Livewire\Home\Contact::class, 'submit'])->name('home.contact');

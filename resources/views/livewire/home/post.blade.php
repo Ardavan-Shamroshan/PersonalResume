@@ -3,7 +3,7 @@
         <div class="tokyo_tm_news tokyo_tm_portfolio">
             <div class="tokyo_tm_title">
                 <div class="title_flex">
-                    <div class="left">
+                    <div class="left" dir="rtl">
                         <span>مقالات</span>
                         <h3>آخرین مقالات</h3>
                     </div>
@@ -38,9 +38,9 @@
                                     </div>
                                     <div class="my_like">
                                         @if ($post->likes()->where([['ip_address', $clientIPAddress], ['likes' , 1]])->get()->isEmpty())
-                                            <a href="#" wire:click="like({{ $post->id }})"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt="" /><span>{{ $post->likes()->where('likes', 1)->get()->count() }}</span></a>
+                                            <a href="#" wire:click.prevent="like({{ $post->id }})"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt="" /><span>{{ $post->likes()->where('likes', 1)->get()->count() }}</span></a>
                                         @else
-                                            <a href="#" wire:click="disLike({{ $post->id }})"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt=""
+                                            <a href="#" wire:click.prevent="disLike({{ $post->id }})"><img class="svg" src="{{ asset('home-assets/img/svg/like.svg') }}" alt=""
                                                     style="filter: invert(28%) sepia(75%) saturate(2390%) hue-rotate(0deg) brightness(118%) contrast(119%);" /><span>{{ $post->likes()->where('likes', 1)->get()->count() }}</span></a>
                                         @endif
                                     </div>

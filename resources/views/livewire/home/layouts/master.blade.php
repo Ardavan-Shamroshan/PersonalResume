@@ -5,7 +5,7 @@
 
     <body>
 
-        {{-- <livewire:home.layouts.loader> --}}
+        <livewire:home.layouts.loader>
 
 
             <div class="tokyo_tm_all_wrap" data-magic-cursor="" data-color="black">
