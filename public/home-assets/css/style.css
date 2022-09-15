@@ -24,7 +24,7 @@ Version: 1.0
 		- Portfolio
 		+ Blog
 			- Latest Posts
-			+ Blog Page 
+			+ Blog Page
 				- Posts
 				- Comments
 				- Comments Form
@@ -151,7 +151,7 @@ a:hover {
 
 .btn {
     box-shadow: none !important;
-    border-radius: 26px;
+    /* border-radius: 26px; */
     height: 46px;
     line-height: 46px;
     font-size: 15px;
@@ -162,6 +162,7 @@ a:hover {
     display: inline-block;
     position: relative;
     border: 0;
+    text-shadow: 0 0 8px rgb(0 0 0 / 30%);
 }
 
 .btn span {
@@ -228,7 +229,7 @@ a:hover {
 
 .font-weight-600 {
   font-weight: 600;
-} 
+}
 
 .font-weight-900 {
   font-weight: 900;
@@ -943,7 +944,7 @@ html:not(.lt-ie10) .not-animated {
         -moz-animation-delay: 0.25s;
         animation-delay: 0.25s;
     }
-    /* -------------------------------- 
+    /* --------------------------------
 
 keyframes
 
@@ -1091,7 +1092,7 @@ main#main {
 }
 
 body.fullscreendark #main>section#home {
-    background-image: url('../img/fullscreendark.jpg');
+    background-image: url('../img/fullscreendark-me.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -1105,7 +1106,8 @@ body.fullscreenlight #main>section#home {
 }
 
 body.fullscreenbgimage #main>section#home {
-    background-image: url('../img/fullscreenbgimage.jpg');
+    /* background-image: url('../img/fullscreenbgimage.jpg'); */
+    background-image: url('../img/fullscreenbgimage-me.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -2905,4 +2907,12 @@ ul.social-intro li a:hover i {
     .page-title .title-head-subtitle {
         font-size: 14px;
     }
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
+}
+
+.text-shadow {
+    text-shadow: 0 0 8px rgb(0 0 0 / 30%);
 }
