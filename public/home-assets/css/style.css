@@ -293,13 +293,13 @@ body.dark .preloader::after {
 body.dark .personal-info h6,
 body.dark .personal-info ul li span,
 body.dark .contact-container .contact .rightside h6,
-section#blog.dark article h4,
+section.myblog.dark article h4,
 body.blog.dark article h4,
 body.dark .main-text h1,
 body.light.dark-header .main-text h1,
 body.dark .project-details,
-body.dark section#blog article h4,
-body.dark section#blog .meta span,
+body.dark section.myblog article h4,
+body.dark section.myblog .meta span,
 body.dark .resume-container h6,
 body.dark .resume-items .item .card-header,
 body.dark .resume-items .item a:before,
@@ -332,7 +332,7 @@ body.dark #cd-nav ul {
     box-shadow: none !important;
 }
 
-body.dark section#blog .meta {
+body.dark section.myblog .meta {
     border-top: 1px solid #555;
     border-bottom: 1px solid #555;
 }
@@ -1909,17 +1909,17 @@ body.light .personal-info ul h6 {
     text-align: right
 }
 
-section#blog article {
+section.myblog article {
     position: relative;
     margin-bottom: 50px;
 }
 
-section#blog figure {
+section.myblog figure {
     margin: 0;
     position: relative;
 }
 
-section#blog figure a {
+section.myblog figure a {
     position: relative;
     display: block;
     max-width: 100%;
@@ -1927,7 +1927,7 @@ section#blog figure a {
     border-radius: 4px;
 }
 
-section#blog figure a img {
+section.myblog figure a img {
     width: 100%;
     border-radius: 4px;
     webkit-transition: all 0.5s ease;
@@ -1937,7 +1937,7 @@ section#blog figure a img {
     display: block;
 }
 
-section#blog figure a:hover img {
+section.myblog figure a:hover img {
     transform: scale(1.1) !important;
     -o-transform: scale(1.1) !important;
     -moz-transform: scale(1.1) !important;
@@ -1946,9 +1946,7 @@ section#blog figure a:hover img {
     opacity: 1 !important;
 }
 
-section#blog .post-date {
-    width: 40px;
-    height: 50px;
+section.myblog .post-date {
     position: absolute;
     top: 15px;
     left: 15px;
@@ -1957,38 +1955,38 @@ section#blog .post-date {
     border-radius: 4px;
 }
 
-section#blog .post-date span {
+section.myblog .post-date span {
     display: block;
     color: #fff;
 }
 
-section#blog .post-date span:first-child {
+section.myblog .post-date span:first-child {
     font-size: 16px;
     padding-top: 1px;
 }
 
-section#blog .post-date span:nth-child(2) {
+section.myblog .post-date span:nth-child(2) {
     font-size: 12px;
 }
 
-section#blog article h4 {
+section.myblog article h4 {
     color: #555;
     font-size: 21px;
     margin: 24px 0 12px;
     font-family: iransans-bold !important;
 }
 
-section#blog .readmore.btn {
+section.myblog .readmore.btn {
     margin: 24px 0;
 }
 
-section#blog p {
+section.myblog p {
     line-height: 2;
     margin: 0;
     text-align: justify
 }
 
-section#blog .meta {
+section.myblog .meta {
     clear: both;
     padding: 15px 0;
     width: 100%;
@@ -1997,12 +1995,12 @@ section#blog .meta {
     font-size: 14px;
 }
 
-section#blog .meta span {
+section.myblog .meta span {
     margin-right: 15px;
     display: inline-block;
 }
 
-section#blog .meta i {
+section.myblog .meta i {
     padding-right: 6px;
 }
 
@@ -2388,7 +2386,7 @@ ul.social-intro li a:hover i {
 .contact-container .contact .rightside form .form-group input[type=text],
 .contact-container .contact .rightside form .form-group input[type=email],
 .contact-container .contact .rightside form .form-group textarea {
-    border-radius: 30px;
+    /* border-radius: 30px; */
     outline: none;
     box-shadow: none !important;
     font-size: 14px;
@@ -2629,7 +2627,7 @@ ul.social-intro li a:hover i {
     .btn-secondary.close-project {
         display: none !important;
     }
-    section#blog .container,
+    section.myblog .container,
     .resume-container .container,
     .contact-container .container {
         padding-left: 30px;
@@ -2811,7 +2809,7 @@ ul.social-intro li a:hover i {
     .main-text h1 {
         font-size: 22px;
     }
-    section#blog .container.page-title h2 {
+    section.myblog .container.page-title h2 {
         font-size: 35px;
     }
     .infos {
@@ -2826,10 +2824,10 @@ ul.social-intro li a:hover i {
     .personal-info .image-container:before {
         display: none;
     }
-    section#blog article h4 {
+    section.myblog article h4 {
         font-size: 20px;
     }
-    section#blog article {
+    section.myblog article {
         margin-bottom: 45px;
     }
     .comments-form button {
@@ -2847,7 +2845,7 @@ ul.social-intro li a:hover i {
     .project-info-container .projects-info ul.project-details li {
         font-size: 14px;
     }
-    section#blog .container,
+    section.myblog .container,
     .resume-container .container,
     .contact-container .container,
     .infos {
@@ -2915,4 +2913,8 @@ ul.social-intro li a:hover i {
 
 .text-shadow {
     text-shadow: 0 0 8px rgb(0 0 0 / 30%);
+}
+
+.img-fluid {
+    height: 17rem !important;
 }

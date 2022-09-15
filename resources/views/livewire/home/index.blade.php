@@ -9,3 +9,12 @@
         <!-- Portfolio Section Starts -->
         <livewire:home.app.project :author="$author" />
         <!-- Portfolio Section Ends -->
+
+        <!-- Contact Section Starts -->
+        <livewire:home.app.contact :author="$author" />
+        <!-- Contact Section Ends -->
+
+
+        <!-- Blog Section Starts -->
+        <livewire:home.app.blog :author="$author" />
+        <!-- Blog Section Ends -->

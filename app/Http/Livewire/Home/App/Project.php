@@ -6,8 +6,15 @@ use Livewire\Component;
 
 class Project extends Component
 {
+    public $author;
+
+    public function mount($author) {
+        $this->author = $author;
+    }
+
     public function render()
     {
-        return view('livewire.home.app.project');
+        $projects = $this->author->projects()->where('status', 1)->get();
+        return view('livewire.home.app.project', ['projects' => $projects]);
     }
 }

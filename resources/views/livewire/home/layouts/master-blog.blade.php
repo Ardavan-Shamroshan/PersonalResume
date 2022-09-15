@@ -5,27 +5,12 @@
     <livewire:home.layouts.head-tag />
 </head>
 
-<body class="light dark-header fullscreenbgimage">
+<body class="light blog">
     <div class="page">
-
-        <!-- Header Starts -->
-        <livewire:home.layouts.header />
-        <!-- Header Ends -->
-
-        <!-- Main Content Starts -->
-        <main id="main">
-            <!-- Back To Home Starts [ONLY MOBILE] -->
-            <span class="back-mobile" id="back-mobile"><i class="fa fa-arrow-right"></i></span>
-            <!-- Back To Home Ends [ONLY MOBILE] -->
-
-            <livewire:home.index />
-
-
-
-
-
-        </main>
+        <!-- Wrapper Starts -->
+        {{ $slot }}
     </div>
+
     <!-- Main Content Ends -->
     <!-- Preloader Starts -->
     <livewire:home.layouts.preloader />
