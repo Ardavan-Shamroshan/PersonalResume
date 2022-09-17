@@ -1530,7 +1530,7 @@ body.light .personal-info ul h6 {
 .chart-bar {
     border-radius: 2px;
     display: block;
-    height: 1px;
+    height: 2px;
     position: relative;
     width: 100%;
     background: #ddd;

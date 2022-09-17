@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->group(functio
     Route::prefix('skill')->group(function () {
         Route::get('/', App\Http\Livewire\Admin\Skill\Skill::class)->name('admin.skill');
         //     Route::get('/add-category', App\Http\Livewire\Admin\Category\AddCategory::class)->name('admin.category.add-category');
-        //     Route::get('/edit-category/{category}', App\Http\Livewire\Admin\Category\EditCategory::class)->name('admin.category.edit-category');
+             Route::get('/edit-skill/{skill}', App\Http\Livewire\Admin\skill\EditSkill::class)->name('admin.skill.edit-skill');
     });
     Route::prefix('experience')->group(function () {
         Route::get('/', App\Http\Livewire\Admin\Experience\Experience::class)->name('admin.experience');

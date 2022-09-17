@@ -20,38 +20,48 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
                     <ul class="list-1">
                         <li>
-                            <h6 class="d-flex justify-content-between"><span class="font-family-irbold"> نام </span> {{ $author->first_name }} </h6>
+                            <h6 class="d-flex justify-content-between">
+                                <span class="font-family-irbold"> نام </span> {{ $author->first_name }} </h6>
                         </li>
                         <li>
-                            <h6 class="d-flex justify-content-between"><span class="font-family-irbold"> نام خانوادگی </span> {{ $author->last_name }} </h6>
+                            <h6 class="d-flex justify-content-between">
+                                <span class="font-family-irbold"> نام خانوادگی </span> {{ $author->last_name }} </h6>
                         </li>
                         <li>
-                            <h6 class="d-flex justify-content-between"><span class="font-family-irbold"> تاریخ تولد </span> {{ $birthDate }} </h6>
+                            <h6 class="d-flex justify-content-between">
+                                <span class="font-family-irbold"> تاریخ تولد </span> {{ $birthDate }} </h6>
                         </li>
                         <li>
-                            <h6 class="d-flex justify-content-between"><span class="font-family-irbold"> ملیت </span> ایرانی </h6>
+                            <h6 class="d-flex justify-content-between">
+                                <span class="font-family-irbold"> ملیت </span> ایرانی </h6>
                         </li>
                         <li>
-                            <h6 class="d-flex justify-content-between"><span class="font-family-irbold"> میزان سابقه کار </span> 3 سال </h6>
+                            <h6 class="d-flex justify-content-between">
+                                <span class="font-family-irbold"> میزان سابقه کار </span> 3 سال </h6>
                         </li>
                         <li>
-                            <h6 class="d-flex justify-content-between"><span class="font-family-irbold"> آدرس </span> {{ $author->city }} </h6>
+                            <h6 class="d-flex justify-content-between">
+                                <span class="font-family-irbold"> آدرس </span> {{ $author->city }} </h6>
                         </li>
                     </ul>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                     <ul class="list-2">
                         <li>
-                            <h6 class="d-flex justify-content-between"><span class="font-family-irbold"> فریلنسر </span> بله </h6>
+                            <h6 class="d-flex justify-content-between">
+                                <span class="font-family-irbold"> فریلنسر </span> بله </h6>
                         </li>
                         <li>
-                            <h6 class="d-flex justify-content-between"><span class="font-family-irbold"> زبان </span> فارسی </h6>
+                            <h6 class="d-flex justify-content-between">
+                                <span class="font-family-irbold"> زبان </span> فارسی </h6>
                         </li>
                         <li>
-                            <h6 class="d-flex justify-content-between"><span class="font-family-irbold"> تلفن </span>{{ $author->mobile }} </h6>
+                            <h6 class="d-flex justify-content-between">
+                                <span class="font-family-irbold"> تلفن </span>{{ $author->mobile }} </h6>
                         </li>
                         <li>
-                            <h6 class="d-flex flex-column justify-content-between"><span class="font-family-irbold"> ایمیل </span> {{ $author->email }} </h6>
+                            <h6 class="d-flex flex-column justify-content-between">
+                                <span class="font-family-irbold"> ایمیل </span> {{ $author->email }} </h6>
                         </li>
                     </ul>
                 </div>
@@ -137,7 +147,9 @@
                 @foreach ($skills as $skill)
                     <!-- Skill Bar Starts -->
                     <div class="col-12 col-sm-6 col-md-4">
-                        <span class="skill-text"> {{ $skill->title }} </span>
+                        <span class="skill-text d-flex justify-content-start">
+                            <img class="d-block ml-1 mb-2" src="{{ $skill->image }}" alt="" style="height: 2rem !important;" />
+                       <span class="mt-1"> {{ $skill->title }}</span> </span>
                         <div class="chart-bar">
                             <span class="item-progress" data-percent="{{ $skill->level }}" style="width: {{ $skill->level }}%;"></span>
                             <span class="percent text-shadow" style="left: calc({{ 100 - $skill->level }}% - 21px);">{{ $skill->level }}%<div class="arrow"></div></span>

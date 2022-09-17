@@ -79,7 +79,7 @@ class AddAuthor extends Component
     ];
 
 
-    // Runs after an property of Category updates
+    // Runs after a property of Category updates
     public function updated($author)
     {
         $this->validateOnly($author);
