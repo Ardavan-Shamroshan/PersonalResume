@@ -128,6 +128,12 @@ class EditProject extends Component
         return redirect()->route('admin.project.edit-project', $this->project);
     }
 
+    // reset all filters
+    public function resetFilters()
+    {
+        return redirect()->route('admin.project');
+    }
+
 
 
     public function render()

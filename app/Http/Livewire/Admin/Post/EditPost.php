@@ -134,6 +134,13 @@ class EditPost extends Component
         return redirect()->route('admin.post.edit-post', $this->post);
     }
 
+    // reset all filters
+    public function resetFilters()
+    {
+
+        return redirect()->route('admin.post');
+    }
+
 
     public function render()
     {

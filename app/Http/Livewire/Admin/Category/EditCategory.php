@@ -50,6 +50,12 @@ class EditCategory extends Component
         return redirect()->route('admin.category.edit-category', $this->category);
     }
 
+    // reset all filters
+    public function resetFilters()
+    {
+        return redirect()->route('admin.category');
+    }
+
     public function render()
     {
         return view('livewire.admin.category.edit-category')

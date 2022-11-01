@@ -57,6 +57,13 @@ class AddCategory extends Component
         return redirect()->route('admin.category.edit-category', $category);
     }
 
+    // reset all filters
+    public function resetFilters()
+    {
+        $this->reset();
+        return redirect()->route('admin.category');
+    }
+
     public function render()
     {
         return view('livewire.admin.category.add-category')

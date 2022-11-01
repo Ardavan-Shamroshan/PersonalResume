@@ -65,6 +65,13 @@ class AddExperience extends Component
         return redirect()->route('admin.experience.edit-experience', $experience);
     }
 
+    // reset all filters
+    public function resetFilters()
+    {
+        $this->reset();
+        return redirect()->route('admin.experience');
+    }
+
     public function render()
     {
         return view('livewire.admin.experience.add-experience')

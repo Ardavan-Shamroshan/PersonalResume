@@ -107,6 +107,13 @@ class AddProject extends Component
         return redirect()->route('admin.project.edit-project', $project);
     }
 
+    // reset all filters
+    public function resetFilters()
+    {
+        $this->reset();
+        return redirect()->route('admin.project');
+    }
+
     public function render()
     {
         return view('livewire.admin.project.add-project')

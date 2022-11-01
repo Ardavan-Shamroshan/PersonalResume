@@ -114,6 +114,13 @@ class AddPost extends Component
         return redirect()->route('admin.post.edit-post', $post);
     }
 
+    // reset all filters
+    public function resetFilters()
+    {
+        $this->reset();
+        return redirect()->route('admin.post');
+    }
+
 
     public function render()
     {

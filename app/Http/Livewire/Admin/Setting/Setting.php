@@ -18,7 +18,7 @@ class Setting extends Component
     public $settingLogo;
     public $rules = [
         'setting.title' => ['required', 'string', 'max:125'],
-        'settingLogo' => ['required', 'image'],
+        'settingLogo' => ['nullable', 'image'],
         'setting.copy_right' => ['required', 'string'],
     ];
 

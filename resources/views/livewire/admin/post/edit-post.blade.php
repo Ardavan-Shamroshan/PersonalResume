@@ -89,7 +89,7 @@
                                     <a class="dropdown-item @if ($errors->any()) disabled-link @endif" href="#" wire:click="saveAndNew">Save and new item</a>
                                 </div>
                             </div>
-                            <a type="button" class="btn btn-secondary me-2" wire:click="resetFilters"><i class="mdi mdi-cancel"></i>Cancel</a>
+                            <a type="button" class="btn btn-secondary me-2" wire:click><i class="mdi mdi-cancel"></i>Cancel</a>
                         </form>
                     </div>
                 </div>

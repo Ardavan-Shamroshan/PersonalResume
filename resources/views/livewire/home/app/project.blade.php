@@ -15,8 +15,8 @@
                     <ul class="row" id="portfolio-items">
                         @foreach ($projects as $project)
                             <!-- Portfolio Item Starts -->
-                            <li class="col-12 col-md-6 col-lg-4">
-                                <a href="#0" data-type="project-{{ $project->id }}">
+                            <li class="col-12 col-md-6 col-lg-4 ">
+                                <a href="#0" data-type="project-{{ $project->id }}" class="border shadow-sm">
                                     <img src="{{ asset($project->image) }}" alt="{{ $project->title }}" class="img-fluid">
                                     <div><span>{{ $project->title }}</span>
                                     </div>

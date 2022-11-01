@@ -98,7 +98,6 @@
                                         {{ $skill->level }}%
                                     </div>
                                 </div>
-
                             </div>
                         @endforeach
                     </div>
@@ -237,7 +236,16 @@
                         <div class="row">
                             <div class="col-9">
                                 <div class="d-flex align-items-center align-self-start">
-                                    <h3 class="mb-0">{{ $latestPost->likes ?? 0 }}</h3>
+                                    @php
+                                        $likes = 0
+                                    @endphp
+                                  @foreach($latestPost->likes as $like)
+                                     @php
+                                         $likes += $like->likes;
+                                     @endphp
+                                  @endforeach
+
+                                    <h3 class="mb-0">{{ $likes ?? 0 }}</h3>
                                     <p class="text-success ms-2 mb-0 font-weight-medium"></p>
                                 </div>
                             </div>

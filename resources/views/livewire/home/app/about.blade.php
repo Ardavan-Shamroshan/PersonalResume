@@ -17,7 +17,7 @@
                 <p class="d-block d-md-none"> من یک طراح و توسعه دهنده مستقل و مستقر در تهران ، ایران هستم. من در تلاش هستم تا از طریق کد دقیق و طراحی کاربر محور ، برنامه های کاربردی وب همه جانبه و زیبا بسازم. </p>
             </div>
             <div class="p-3 py-4 shadow-sm row col-xl-6 col-lg-6 col-md-12">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 border-left">
                     <ul class="list-1">
                         <li>
                             <h6 class="d-flex justify-content-between">
